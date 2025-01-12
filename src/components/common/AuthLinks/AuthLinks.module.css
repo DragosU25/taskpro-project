@@ -1,0 +1,15 @@
+.linksContainer {
+  display: flex;
+  gap: 14px;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.active {
+  color: #ffffff;
+}

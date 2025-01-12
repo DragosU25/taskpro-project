@@ -1,0 +1,15 @@
+.section {
+  height: 100vh;
+  max-width: 100%;
+  color: #161616;
+  background: linear-gradient(
+    180deg,
+    rgba(246, 246, 247, 1) 40%,
+    rgba(178, 226, 155, 1) 70%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
