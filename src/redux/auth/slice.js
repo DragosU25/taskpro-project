@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register } from "./operators";
+import { register, resendVerificationEmail } from "./operators";
 
 const initialState = {
   user: {
@@ -53,6 +53,19 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         console.error("Register Error:", action.payload);
+      })
+      .addCase(resendVerificationEmail.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(resendVerificationEmail.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log("Resend Email Success:", action.payload);
+      })
+      .addCase(resendVerificationEmail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        console.error("Resend Email Error:", action.payload);
       });
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { act, useState } from "react";
 import FormContainer from "../../components/common/FormContainer/FormContainer";
 import AuthLinks from "../../components/common/AuthLinks/AuthLinks";
 import InputField from "../../components/common/InputField/InputField";
@@ -9,14 +9,19 @@ import { register } from "../../redux/auth/operators";
 import Notiflix from "notiflix";
 
 import styles from "./RegisterPage.module.css";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     password: "",
   });
+
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,15 +40,19 @@ const RegisterPage = () => {
         email: "",
         password: "",
       });
+      setError(null);
 
       // Afișăm notificarea de succes
       Notiflix.Notify.success(
         "Register successful! Please check your email for confirmation!"
       );
+      navigate("/info");
+      console.log(action);
       return action;
     } catch (error) {
       // Afișăm notificarea de eroare
-      Notiflix.Notify.failure(error.message || "Email address in use!");
+      Notiflix.Notify.failure(error.msg);
+      setError(error.msg);
       console.log(error);
     }
   };
@@ -75,6 +84,7 @@ const RegisterPage = () => {
           value={userData.password}
           handleChange={handleChange}
         />
+        {error && <p className={styles.error}>{error}</p>}
         <Button type="submit">Register Now</Button>
       </form>
     </FormContainer>

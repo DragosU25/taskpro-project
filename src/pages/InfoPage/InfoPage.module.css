@@ -1,0 +1,38 @@
+.link {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.link:hover,
+.link:focus {
+  color: #fff;
+}
+h2 {
+}
+
+.text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.28px;
+  max-width: 473px;
+}
+
+.confirmLink {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.confirmLink:hover,
+.confirmLink:focus {
+  color: #fff;
+}
