@@ -1,0 +1,107 @@
+.formContainer {
+  background: #151515;
+  color: #ffffff;
+
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+}
+
+.linksContainer {
+  display: flex;
+  gap: 14px;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+
+.registerLink {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.loginLink {
+  color: #fff;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+.activeTab {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input {
+  border-radius: 8px;
+  border: 1px solid #bedbb0;
+  opacity: 0.4;
+  background: #1f1f1f;
+  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+  padding: 14px 214px 14px 18px;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.28px;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.togglePassword:hover {
+  color: #ffffff;
+}
+
+.submitButton {
+  border-radius: 8px;
+  background: #bedbb0;
+  border: none;
+  color: #161616;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  padding: 14px;
+  margin-top: 10px;
+}
+
+.submitButton:hover {
+  background-color: #93d392;
+}
