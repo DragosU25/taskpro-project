@@ -3,3 +3,5 @@ import logo from "../assets/images/logo.png";
 
 export const homeImg = homePageImg;
 export const logoImg = logo;
+
+export const svgIcons = "../assets/images/sprite.svg";

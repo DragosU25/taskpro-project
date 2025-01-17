@@ -1,0 +1,8 @@
+.icon {
+  stroke: var(--main-icon-color);
+}
+
+.icon:hover,
+.icon:focus {
+  stroke: var(--main-icon-color-hover);
+}

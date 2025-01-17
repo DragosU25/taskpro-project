@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-import { homeImg, logoImg } from "../../utils";
+import { homeImg } from "../../utils";
 import { Link, Outlet } from "react-router-dom";
 import LogoContainer from "../../components/common/LogoContainer/LogoContainer";
 

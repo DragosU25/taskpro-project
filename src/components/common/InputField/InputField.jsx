@@ -8,6 +8,7 @@ const InputField = ({
   name,
   value,
   handleChange,
+  required = true,
 }) => {
   return (
     <input
@@ -18,7 +19,7 @@ const InputField = ({
       type={type}
       placeholder={placeholder}
       className={styles.input}
-      required
+      required={required}
     />
   );
 };
