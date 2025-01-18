@@ -72,14 +72,16 @@ const LoginPage = () => {
           name="email"
           value={userData.email}
           handleChange={handleChange}
+          extraClass={styles.input}
         />
         <PasswordInput
           placeholder="Enter your password"
           name="password"
           value={userData.password}
           handleChange={handleChange}
+          extraClass={styles.input}
         />
-        <Button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading} extraClass={styles.button}>
           {loading ? "Logging in..." : "Log In Now"}
         </Button>
       </form>
