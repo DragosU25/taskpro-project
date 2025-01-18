@@ -9,6 +9,7 @@ const InputField = ({
   value,
   handleChange,
   required = true,
+  extraClass,
 }) => {
   return (
     <input
@@ -18,7 +19,7 @@ const InputField = ({
       onChange={handleChange}
       type={type}
       placeholder={placeholder}
-      className={styles.input}
+      className={`${styles.input} ${extraClass}`}
       required={required}
     />
   );

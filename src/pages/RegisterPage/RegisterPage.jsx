@@ -68,6 +68,7 @@ const RegisterPage = () => {
           name="name"
           value={userData.name}
           handleChange={handleChange}
+          extraClass={styles.input}
         />
         <InputField
           type="email"
@@ -76,6 +77,7 @@ const RegisterPage = () => {
           name="email"
           value={userData.email}
           handleChange={handleChange}
+          extraClass={styles.input}
         />
         <PasswordInput
           placeholder="Create a password"
@@ -83,9 +85,12 @@ const RegisterPage = () => {
           name="password"
           value={userData.password}
           handleChange={handleChange}
+          extraClass={styles.input}
         />
         {error && <p className={styles.error}>{error}</p>}
-        <Button type="submit">Register Now</Button>
+        <Button type="submit" extraClass={styles.button}>
+          Register Now
+        </Button>
       </form>
     </FormContainer>
   );
