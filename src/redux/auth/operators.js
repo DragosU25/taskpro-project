@@ -21,7 +21,6 @@ export const register = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/auth/register", userData);
-      console.log(response);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -67,7 +66,6 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post("/auth/login", userData);
       setAuthHeader(response.data.result.user.token);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -117,7 +115,6 @@ export const updateTheme = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
       return response.data.theme;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Failed to update theme");
@@ -140,7 +137,6 @@ export const updateUser = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("data", response.data);
       return response.data;
     } catch (error) {
       console.error("Update user error:", error);
@@ -172,6 +168,31 @@ export const getCurrentUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(
         error.response?.data || { message: "Failed to fetch current user" }
+      );
+    }
+  }
+);
+
+// Logout user action
+export const logoutUser = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return rejectWithValue("No token found");
+    }
+
+    try {
+      await axios.post("/auth/logout", null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      clearAuthHeader(); // Clear token from headers and localStorage
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || { message: "Logout failed" }
       );
     }
   }

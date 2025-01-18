@@ -3,11 +3,17 @@ import svgIcons from "../../../assets/images/sprite.svg";
 
 import styles from "./SvgIcon.module.css";
 
-const Icon = ({ name, color, size }) => {
+const Icon = ({ name, color, size, handlerFunction }) => {
   // Calea către fișierul sprite.svg
 
   return (
-    <svg className={styles.icon} fill={color} width={size} height={size}>
+    <svg
+      className={styles.icon}
+      fill={color}
+      width={size}
+      height={size}
+      onClick={handlerFunction}
+    >
       <use href={`${svgIcons}#icon-${name}`} />
     </svg>
   );

@@ -7,6 +7,7 @@ import {
   updateTheme,
   getCurrentUser,
   updateUser,
+  logoutUser,
 } from "./operators";
 
 const initialState = {
@@ -85,7 +86,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.result.user;
         state.token = action.payload.result.user.token;
-        console.log("login action payload", action.payload);
 
         if (action.payload.result.user.verify) {
           state.isAuthenticated = true;
@@ -108,7 +108,6 @@ const authSlice = createSlice({
       .addCase(updateAvatar.fulfilled, (state, action) => {
         state.loading = false;
         state.user.avatar = action.payload; // Salvează URL-ul avatarului
-        console.log(action.payload);
       })
       .addCase(updateAvatar.rejected, (state, action) => {
         state.loading = false;
@@ -121,7 +120,6 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.data;
-        console.log("state", action.payload.data);
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
@@ -146,11 +144,24 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.data;
-        console.log("current user", action.payload);
 
         state.isAuthenticated = true;
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.loading = false;
+        state.user = null;
+        state.token = null;
+        state.isAuthenticated = false;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

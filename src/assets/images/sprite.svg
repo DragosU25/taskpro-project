@@ -56,7 +56,7 @@
 <symbol id="icon-filter" viewBox="0 0 32 32">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M29.334 4h-26.667l10.667 12.613v8.72l5.333 2.667v-11.387l10.667-12.613z"></path>
 </symbol> 
-<symbol id="logout" viewBox="0 0 32 32">
+<symbol id="icon-logout" viewBox="0 0 32 32">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M11.867 10.080c0.413-4.8 2.88-6.76 8.28-6.76h0.173c5.96 0 8.347 2.387 8.347 8.347v8.693c0 5.96-2.387 8.347-8.347 8.347h-0.173c-5.36 0-7.827-1.933-8.267-6.653"></path>
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M2.667 16h17.173"></path>
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M16.867 11.533l4.467 4.467-4.467 4.467"></path>

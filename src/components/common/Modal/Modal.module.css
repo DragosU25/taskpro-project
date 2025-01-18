@@ -40,7 +40,7 @@
 /* Stiluri pe mobil */
 @media (max-width: 768px) {
   .modalContent {
-    padding: 24px;
+    padding: 20px;
     width: 90%; /* Modalul va ocupa mai mult spațiu pe mobil */
     max-width: 90%; /* Limitează lățimea la 90% */
   }

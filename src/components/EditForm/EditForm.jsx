@@ -96,7 +96,7 @@ function EditForm({ avatarPath, name, email }) {
             id="avatarUpload"
           />
           <label htmlFor="avatarUpload">
-            <Icon name="plus" size={10} />
+            <Icon name="plus" size={10} color={"#000"} />
           </label>
         </div>
       </div>

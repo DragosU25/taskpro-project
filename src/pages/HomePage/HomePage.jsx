@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div className={styles.container}>
       <img src={homeImg} alt="computer" className={styles.homeImg} />
-      <LogoContainer />
+      <LogoContainer font={40} />
       <p className={styles.text}>
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don't wait, start achieving your goals now!

@@ -4,8 +4,20 @@
   align-items: center;
   background-color: var(--header-bg); /* Variabila pentru tema curentă */
   color: var(--header-color); /* Variabila pentru text */
-  padding: 10px 20px;
+  padding: 14px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (width>= 768px) {
+  .header {
+    padding: 24px 32px;
+  }
+}
+
+@media (width>= 1280px) {
+  .header {
+    padding: 18px 20 px;
+  }
 }
 
 .menuButton {
@@ -13,6 +25,12 @@
   border: none;
   color: inherit;
   cursor: pointer;
+}
+
+@media (width>=1280px) {
+  .menuButton {
+    display: none;
+  }
 }
 
 .container {
@@ -27,6 +45,12 @@
   gap: 10px;
 }
 
+@media (width>=1280px) {
+  .container {
+    margin-left: auto;
+  }
+}
+
 .name {
   font-size: 14px;
   font-weight: 500;
@@ -35,6 +59,7 @@
   background-color: transparent;
   color: var(--header-text-color);
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .avatar {

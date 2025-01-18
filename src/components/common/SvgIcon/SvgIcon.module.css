@@ -1,5 +1,6 @@
 .icon {
   stroke: var(--main-icon-color);
+  cursor: pointer;
 }
 
 .icon:hover,
