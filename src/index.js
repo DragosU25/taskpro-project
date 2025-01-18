@@ -5,7 +5,7 @@ import App from "./App";
 import WebFont from "webfontloader";
 import { Provider } from "react-redux";
 import store from "./store/index";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import "modern-normalize/modern-normalize.css";
 
 WebFont.load({
@@ -18,9 +18,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/taskpro-project">
+      <HashRouter basename="/">
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 );

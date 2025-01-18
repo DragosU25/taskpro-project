@@ -1,0 +1,32 @@
+.avatarImage {
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+}
+
+.avatarContainer {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.addContainer {
+  position: absolute;
+  padding: 7px;
+  background-color: var(--main-button-hover-bg-color);
+  border-radius: 8px;
+  bottom: -15px;
+}
+
+.addContainer:hover,
+.addContainer:focus {
+  background-color: var(--main-button-bg-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 25px;
+}

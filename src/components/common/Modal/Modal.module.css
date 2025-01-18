@@ -1,0 +1,63 @@
+/* src/components/common/Modal.module.css */
+
+/* Overlay-ul care se află deasupra întregii pagini */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Contenutul modalului */
+.modalContent {
+  background: var(--header-bg);
+  padding: 40px 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px; /* Lățime maximă pentru modal */
+  position: relative;
+  transition: transform 0.3s ease-out; /* Animație pentru deschidere */
+  color: var(--header-text-color);
+}
+
+.closeButton {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: var(--header-text-color);
+  border: none;
+  cursor: pointer;
+}
+
+/* Stiluri pe mobil */
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 20px;
+    width: 90%; /* Modalul va ocupa mai mult spațiu pe mobil */
+    max-width: 90%; /* Limitează lățimea la 90% */
+  }
+
+  .closeButton {
+    font-size: 24px; /* Dimensiunea mai mare pentru butonul de închidere */
+  }
+}
+
+/* Stiluri pentru desktop (min-width 768px) */
+@media (min-width: 768px) {
+  .modalContent {
+    padding: 40px;
+    max-width: 500px;
+  }
+
+  .modalOverlay {
+    background: rgba(0, 0, 0, 0.5); /* Fundal semitransparent pe desktop */
+  }
+}

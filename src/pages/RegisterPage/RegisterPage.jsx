@@ -1,4 +1,4 @@
-import React, { act, useState } from "react";
+import React, { useState } from "react";
 import FormContainer from "../../components/common/FormContainer/FormContainer";
 import AuthLinks from "../../components/common/AuthLinks/AuthLinks";
 import InputField from "../../components/common/InputField/InputField";

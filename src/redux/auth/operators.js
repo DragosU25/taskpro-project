@@ -21,7 +21,6 @@ export const register = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/auth/register", userData);
-      console.log(response);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -66,11 +65,134 @@ export const loginUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/auth/login", userData);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.result.user.token);
       return response.data;
     } catch (error) {
       return rejectWithValue(
         error.response?.data || { message: "Login failed" }
+      );
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  "auth/updateAvatar",
+  async (file, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      const response = await axios.post("/auth/avatars", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Important pentru upload fișiere
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data.avatarURL; // Returnează URL-ul avatarului
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || { message: "Failed to update avatar" }
+      );
+    }
+  }
+);
+
+export const updateTheme = createAsyncThunk(
+  "auth/updateTheme",
+  async (theme, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.patch(
+        "/auth/user", // corectăm eroarea din PATCH
+        { theme },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Folosește tokenul din Redux
+          },
+        }
+      );
+      return response.data.theme;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Failed to update theme");
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("User is not authenticated. Please log in again.");
+      }
+
+      const response = await axios.patch("/auth/user", userData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Update user error:", error);
+      return rejectWithValue(
+        error.response?.data || "Failed to update user data. Please try again."
+      );
+    }
+  }
+);
+
+// Get current user action
+export const getCurrentUser = createAsyncThunk(
+  "auth/current",
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return rejectWithValue("No token found");
+    }
+
+    try {
+      setAuthHeader(token); // Set token in headers
+      const response = await axios.get("/auth/current", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || { message: "Failed to fetch current user" }
+      );
+    }
+  }
+);
+
+// Logout user action
+export const logoutUser = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return rejectWithValue("No token found");
+    }
+
+    try {
+      await axios.post("/auth/logout", null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      clearAuthHeader(); // Clear token from headers and localStorage
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || { message: "Logout failed" }
       );
     }
   }

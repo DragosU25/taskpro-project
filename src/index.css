@@ -9,3 +9,81 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+:root {
+  --header-bg: #f9f9f9;
+  --header-text-color: #000;
+
+  --main-bg: #f6f6f7;
+  --main-text-color: #000;
+
+  --sidebar-bg: #fff;
+  --sidebar-text-color: #000;
+}
+
+/* Teme */
+.light {
+  --header-bg: #fcfcfc;
+  --header-text-color: rgba(22, 22, 22, 0.8);
+  --header-link-hover: #bedbb0;
+
+  --main-bg: #f6f6f7;
+  --main-text-color: rgba(22, 22, 22, 0.8);
+  --main-button-bg-color: #bedbb0;
+  --main-button-hover-bg-color: #9dc888;
+  --main-button-text-color: #161616;
+  --main-icon-color: #16161680;
+  --main-icon-color-hover: #bedbb0;
+
+  --sidebar-bg: #fff;
+  --sidebar-text-color: #161616;
+}
+
+.dark {
+  --header-bg: #161616;
+  --header-text-color: #fff;
+  --header-link-hover: #bedbb0;
+
+  --main-bg: #1f1f1f;
+  --main-text-color: #fff;
+  --main-button-bg-color: #bedbb0;
+  --main-button-hover-bg-color: #9dc888;
+  --main-button-text-color: #161616;
+  --main-icon-color: #ffffff80;
+  --main-icon-color-hover: #bedbb0;
+
+  --sidebar-bg: #121212;
+  --sidebar-text-color: #fff;
+}
+
+.violet {
+  --header-bg: #fcfcfc;
+  --header-text-color: rgba(22, 22, 22, 0.8);
+  --header-link-hover: #5255bc;
+
+  --main-bg: #ecedfd;
+  --main-text-color: #161616;
+  --main-button-bg-color: #5255bc;
+  --main-button-hover-bg-color: #7b7ede;
+  --main-button-text-color: #fff;
+  --main-icon-color: #16161680;
+  --main-icon-color-hover: #5255bc;
+
+  --sidebar-bg: #5255bc;
+  --sidebar-text-color: #fff;
+}
+
+body.light {
+  background-color: #fff;
+  color: #000;
+}
+
+body.dark {
+  background-color: #232323;
+  color: #fff;
+}
+
+body.violet {
+  background-color: #d6d8ff;
+  color: #fff;
+}

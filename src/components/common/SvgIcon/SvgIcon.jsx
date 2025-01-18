@@ -1,0 +1,27 @@
+import React from "react";
+import svgIcons from "../../../assets/images/sprite.svg";
+
+import styles from "./SvgIcon.module.css";
+
+const Icon = ({ name, color, size, handlerFunction }) => {
+  // Calea către fișierul sprite.svg
+
+  return (
+    <svg
+      className={styles.icon}
+      fill={color}
+      width={size}
+      height={size}
+      onClick={handlerFunction}
+    >
+      <use href={`${svgIcons}#icon-${name}`} />
+    </svg>
+  );
+};
+
+Icon.defaultProps = {
+  size: 30,
+  color: "black",
+};
+
+export default Icon;
