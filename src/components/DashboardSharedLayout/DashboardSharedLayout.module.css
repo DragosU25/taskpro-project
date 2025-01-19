@@ -29,6 +29,12 @@
   color: var(--main-text-color);
 }
 
+@media (width>=1280px) {
+  .mainContent {
+    margin-left: 260px;
+  }
+}
+
 /* Tranziții */
 .dashboardContainer,
 .header,

@@ -1,5 +1,6 @@
 .sidebar {
   width: 225px;
+
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text-color);
   padding: 14px;
@@ -33,4 +34,9 @@
 
 .modalText {
   text-align: center;
+}
+
+.modal {
+  max-width: 350px;
+  padding: 24px;
 }

@@ -14,6 +14,9 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const InfoPage = lazy(() => import("./pages/InfoPage/InfoPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage/DashboardPage"));
+const ProjectDetailsPage = lazy(() =>
+  import("./pages/ProjectDetailsPage/ProjectDetailsPage")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -66,7 +69,7 @@ function App() {
           }
         >
           <Route index element={<DashboardPage />} />
-          {/* Adaugă aici alte sub-rute pentru Dashboard, dacă e nevoie */}
+          <Route path="projects/:id" element={<ProjectDetailsPage />} />
         </Route>
       </Routes>
     </Suspense>

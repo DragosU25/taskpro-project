@@ -1,7 +1,8 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 function DashboardPage() {
-  return <div>DashboardPage</div>;
+  return <Outlet />;
 }
 
 export default DashboardPage;
