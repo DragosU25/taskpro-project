@@ -81,7 +81,7 @@ function EditForm({ avatarPath, name, email }) {
 
   return (
     <>
-      <h2>Edit Profile</h2>
+      <h2 className={styles.title}>Edit Profile</h2>
       <div className={styles.avatarContainer}>
         <img
           src={avatarPath || "/default-avatar.png"} // Folosește avatarul actualizat

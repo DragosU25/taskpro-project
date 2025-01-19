@@ -4,6 +4,15 @@
   border-radius: 8px;
 }
 
+.title {
+  color: var(--header-text-color);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+
 .avatarContainer {
   display: flex;
   justify-content: center;
