@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import styles from "./PasswordInput.module.css";
 
-const PasswordInput = ({ placeholder, id, name, value, handleChange }) => {
+const PasswordInput = ({
+  placeholder,
+  id,
+  name,
+  value,
+  handleChange,
+  extraClass,
+}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -17,7 +24,7 @@ const PasswordInput = ({ placeholder, id, name, value, handleChange }) => {
         onChange={handleChange}
         type={passwordVisible ? "text" : "password"}
         placeholder={placeholder}
-        className={styles.input}
+        className={`${styles.input} ${extraClass}`}
       />
       <button
         type="button"
@@ -31,29 +38,3 @@ const PasswordInput = ({ placeholder, id, name, value, handleChange }) => {
 };
 
 export default PasswordInput;
-
-// import styles from "./PasswordInput.module.css";
-
-// const PasswordInput = ({
-//   placeholder,
-//   id,
-//   name,
-//   value,
-//   handleChange,
-//   extraClass,
-// }) => {
-//   return (
-//     <div className={styles.passwordContainer}>
-//       <input
-//         id={id}
-//         name={name}
-//         value={value}
-//         onChange={handleChange}
-//         placeholder={placeholder}
-//         className={`${styles.input} ${extraClass}`}
-//       />
-//     </div>
-//   );
-// };
-
-// export default PasswordInput;
