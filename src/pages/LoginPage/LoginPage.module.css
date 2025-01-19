@@ -9,6 +9,7 @@
   background: #1f1f1f;
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   padding: 14px 14px 18px;
+  color: #fff;
 }
 
 .input::placeholder {
