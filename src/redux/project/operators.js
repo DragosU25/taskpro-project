@@ -97,3 +97,38 @@ export const deleteProject = createAsyncThunk(
     }
   }
 );
+
+export const editProject = createAsyncThunk(
+  "project/editProject",
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.patch(
+        `/project/${id}`,
+        data, // Corpul cererii conține datele pentru actualizare
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response from server:", error.response.data);
+        return rejectWithValue({
+          message:
+            error.response.data.message ||
+            "Failed to edit the project on the server.",
+          status: error.response.status,
+        });
+      } else {
+        console.error("Network or other error occurred:", error.message);
+        return rejectWithValue({
+          message: error.message || "A network error occurred.",
+        });
+      }
+    }
+  }
+);

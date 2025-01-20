@@ -1,0 +1,75 @@
+.iconGrid {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.icons {
+  margin-top: 24px;
+}
+
+.label {
+  color: var(--header-text-color);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.backgrounds {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.iconGrid,
+.backgroundGrid {
+  display: flex;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(28px, 1fr));
+  gap: 4px;
+  max-width: 300px;
+}
+
+.icon,
+.background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.background:hover {
+  border-color: #5a5a5a;
+}
+
+.backgroundImage {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.selected {
+  border: 2px solid var(--main-icon-color); /* Orange border to show selection */
+  opacity: 0.8; /* Slightly dim the unselected ones */
+}
+
+.icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.background {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon:hover,
+.background:hover {
+  opacity: 0.7; /* Show some feedback when hovered */
+}
