@@ -5,7 +5,7 @@ import Icon from "../common/SvgIcon/SvgIcon";
 import { deleteProject } from "../../redux/project/operators";
 import { useDispatch } from "react-redux";
 
-function ProjectsContainer({ projects }) {
+function ProjectsContainer({ projects, onEdit }) {
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
@@ -16,7 +16,7 @@ function ProjectsContainer({ projects }) {
 
   return (
     <div className={styles.container}>
-      {projects?.map((project, index) => (
+      {projects?.map((project) => (
         <NavLink
           to={`projects/${project._id}`}
           key={project._id}
@@ -32,11 +32,15 @@ function ProjectsContainer({ projects }) {
               <h3 className={styles.name}>{project.name}</h3>
             </div>
             <div className={styles.actionsContainer}>
-              <Icon name={"edit"} size={16} />
+              <Icon
+                name={"edit"}
+                size={16}
+                handlerFunction={() => onEdit(project)} // Trimite proiectul către SideBar
+              />
               <Icon
                 name={"delete"}
                 size={16}
-                handlerFunction={() => handleDelete(project._id)} // Schimbă la o funcție anonimă
+                handlerFunction={() => handleDelete(project._id)}
               />
             </div>
           </div>

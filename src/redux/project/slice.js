@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addProject, deleteProject, getProjects } from "./operators";
+import {
+  addProject,
+  deleteProject,
+  editProject,
+  getProjects,
+} from "./operators";
 
 const initialState = {
   project: [
@@ -68,6 +73,24 @@ const projectSlice = createSlice({
         state.loading = false;
         state.error =
           action.payload?.message || "Failed to delete the project.";
+      })
+      .addCase(editProject.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(editProject.fulfilled, (state, action) => {
+        state.loading = false;
+        const updatedProject = action.payload.data; // Presupunem că serverul returnează proiectul actualizat
+        const index = state.project.findIndex(
+          (project) => project._id === updatedProject._id
+        );
+        if (index !== -1) {
+          state.project[index] = updatedProject; // Actualizează proiectul în lista locală
+        }
+      })
+      .addCase(editProject.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to edit the project.";
       });
   },
 });

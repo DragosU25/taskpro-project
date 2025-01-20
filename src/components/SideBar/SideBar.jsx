@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import styles from "./SideBar.module.css";
 import Icon from "../common/SvgIcon/SvgIcon";
 import { logoutUser } from "../../redux/auth/operators";
@@ -7,45 +7,58 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../common/Button/Button";
 import LogoContainer from "../common/LogoContainer/LogoContainer";
 import Boards from "../Boards/Boards";
-import useModal from "../../hooks/useModal";
-import AddBoardForm from "../AddBoardForm/AddBoardForm";
 import ProjectsContainer from "../ProjectsContainer/ProjectsContainer";
 import { selectProject } from "../../redux/project/selectors";
 import { getProjects } from "../../redux/project/operators";
+import AddBoardForm from "../AddBoardForm/AddBoardForm";
+import EditBoardForm from "../EditBoardForm/EditBoardForm";
 
 const SideBar = forwardRef(({ isSidebarOpen }, ref) => {
   const dispatch = useDispatch();
-  const projects = useSelector(selectProject); // Assuming this selector gets the list of projects
-  const logoutModal = useModal();
-  const addModal = useModal();
+  const projects = useSelector(selectProject);
 
-  //useEffect for projects
+  const [modalContent, setModalContent] = useState(null);
+  const [isModalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     dispatch(getProjects());
   }, [dispatch]);
 
-  //handle logout function
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    logoutModal.closeModal(); // Închide modalul după logout
+  const handleModalOpen = (content) => {
+    setModalContent(content);
+    setModalVisible(true);
   };
 
-  // open modal for logout
+  const handleModalClose = () => {
+    setModalContent(null);
+    setModalVisible(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    handleModalClose();
+  };
+
   const handleLogoutClick = () => {
-    logoutModal.openModal(
+    handleModalOpen(
       <div className={styles.modalContent}>
         <h2 className={styles.modalText}>Are you sure you want to logout?</h2>
         <div className={styles.modalButtons}>
           <Button handlerFunction={handleLogout}>Yes</Button>
-          <Button handlerFunction={logoutModal.closeModal}>No</Button>
+          <Button handlerFunction={handleModalClose}>No</Button>
         </div>
       </div>
     );
   };
 
-  //open add modal
   const handleAddBoard = () => {
-    addModal.openModal(<AddBoardForm />);
+    handleModalOpen(<AddBoardForm />);
+  };
+
+  const handleEditBoard = (project) => {
+    handleModalOpen(
+      <EditBoardForm project={project} onClose={handleModalClose} />
+    );
   };
 
   return (
@@ -58,23 +71,16 @@ const SideBar = forwardRef(({ isSidebarOpen }, ref) => {
       >
         <LogoContainer font={16} />
         <Boards handleModalOpen={handleAddBoard} />
-        <ProjectsContainer projects={projects} />
+        <ProjectsContainer projects={projects} onEdit={handleEditBoard} />
         <Icon name={"logout"} size={24} handlerFunction={handleLogoutClick} />
       </aside>
 
       <Modal
-        isVisible={logoutModal.isVisible}
-        handleModalClose={logoutModal.closeModal}
-      >
-        {logoutModal.content}
-      </Modal>
-
-      <Modal
-        isVisible={addModal.isVisible}
-        handleModalClose={addModal.closeModal}
+        isVisible={isModalVisible}
+        handleModalClose={handleModalClose}
         extraClass={styles.modal}
       >
-        {addModal.content}
+        {modalContent}
       </Modal>
     </>
   );
