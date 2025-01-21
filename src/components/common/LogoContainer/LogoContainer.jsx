@@ -1,13 +1,12 @@
 import React from "react";
-import { logoImg } from "../../../utils";
 import styles from "./LogoContainer.module.css";
+import Icon from "../SvgIcon/SvgIcon";
 
-function LogoContainer({ font }) {
+function LogoContainer({ font, extraClass }) {
   return (
-    <div className={styles.logoContainer}>
-      <div className={styles.logoImg}>
-        <img src={logoImg} alt="" />
-      </div>
+    <div className={`${styles.logoContainer} ${extraClass}`}>
+      <Icon name={"logo"} size={32} extraClass={styles.logoIcon} />
+
       <span className={styles.appName} style={{ fontSize: font }}>
         Task Pro
       </span>

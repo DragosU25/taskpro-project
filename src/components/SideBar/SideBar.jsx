@@ -69,7 +69,7 @@ const SideBar = forwardRef(({ isSidebarOpen }, ref) => {
           isSidebarOpen ? styles.sidebarOpen : ""
         }`}
       >
-        <LogoContainer font={16} />
+        <LogoContainer font={16} extraClass={styles.logoContainer} />
         <Boards handleModalOpen={handleAddBoard} />
         <ProjectsContainer projects={projects} onEdit={handleEditBoard} />
         <Icon name={"logout"} size={24} handlerFunction={handleLogoutClick} />
