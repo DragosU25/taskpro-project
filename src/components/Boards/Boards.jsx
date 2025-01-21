@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Boards.module.css";
 import Icon from "../common/SvgIcon/SvgIcon";
 import Button from "../common/Button/Button";
