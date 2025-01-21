@@ -23,6 +23,9 @@ code {
 
 /* Teme */
 .light {
+  --logo-fill-color: #1f1f1f;
+  --logo-fill2-color: #ffffff;
+
   --header-bg: #fcfcfc;
   --header-text-color: rgba(22, 22, 22, 0.8);
   --header-link-hover: #bedbb0;
@@ -34,12 +37,18 @@ code {
   --main-button-text-color: #161616;
   --main-icon-color: #16161680;
   --main-icon-color-hover: #bedbb0;
+  --main-sidebar-project-active-text-color: #161616;
+  --main-sidebar-project-active-bg-color: #f6f6f7;
+  --main-sidebar-button-color: #bedbb0;
 
   --sidebar-bg: #fff;
   --sidebar-text-color: #161616;
 }
 
 .dark {
+  --logo-fill-color: #1f1f1f;
+  --logo-fill2-color: #ffffff;
+
   --header-bg: #161616;
   --header-text-color: #fff;
   --header-link-hover: #bedbb0;
@@ -51,12 +60,18 @@ code {
   --main-button-text-color: #161616;
   --main-icon-color: #ffffff80;
   --main-icon-color-hover: #bedbb0;
+  --main-sidebar-project-active-text-color: #fff;
+  --main-sidebar-project-active-bg-color: rgba(255, 255, 255, 0.5);
+  --main-sidebar-button-color: #bedbb0;
 
   --sidebar-bg: #121212;
   --sidebar-text-color: #fff;
 }
 
 .violet {
+  --logo-fill-color: #ecedfd;
+  --logo-fill2-color: #5255bc;
+
   --header-bg: #fcfcfc;
   --header-text-color: rgba(22, 22, 22, 0.8);
   --header-link-hover: #5255bc;
@@ -68,6 +83,9 @@ code {
   --main-button-text-color: #fff;
   --main-icon-color: #16161680;
   --main-icon-color-hover: #5255bc;
+  --main-sidebar-project-active-text-color: #fff;
+  --main-sidebar-project-active-bg-color: #1f1f1f;
+  --main-sidebar-button-color: #b8bcfd;
 
   --sidebar-bg: #5255bc;
   --sidebar-text-color: #fff;

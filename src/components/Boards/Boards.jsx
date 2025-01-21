@@ -11,7 +11,7 @@ function Boards({ handleModalOpen }) {
         <div className={styles.addButtonContainer}>
           <p className={styles.text}>Create a new board</p>
           <Button extraClass={styles.button} handlerFunction={handleModalOpen}>
-            <Icon name={"plus"} size={20} />
+            <Icon name={"plus"} size={20} extraClass={styles.icon} />
           </Button>
         </div>
       </div>

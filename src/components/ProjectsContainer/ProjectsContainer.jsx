@@ -26,8 +26,8 @@ function ProjectsContainer({ projects, onEdit }) {
         >
           <div className={`${styles.projectCard}`}>
             <div className={styles.projectInfoContainer}>
-              <div className={styles.icon}>
-                <Icon name={project.icon} size={18} />
+              <div>
+                <Icon name={project.icon} size={18} extraClass={styles.icon} />
               </div>
               <h3 className={styles.name}>{project.name}</h3>
             </div>
@@ -35,12 +35,14 @@ function ProjectsContainer({ projects, onEdit }) {
               <Icon
                 name={"edit"}
                 size={16}
-                handlerFunction={() => onEdit(project)} // Trimite proiectul către SideBar
+                handlerFunction={() => onEdit(project)}
+                extraClass={styles.icon}
               />
               <Icon
                 name={"delete"}
                 size={16}
                 handlerFunction={() => handleDelete(project._id)}
+                extraClass={styles.icon}
               />
             </div>
           </div>
