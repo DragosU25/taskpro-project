@@ -1,0 +1,149 @@
+.title {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  color: var(--header-text-color);
+  margin-bottom: 24px;
+}
+
+.textarea {
+  padding: 14px 0px 122px 18px;
+  width: 100%;
+  margin-top: 14px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 2px solid var(--main-button-bg-color);
+  opacity: 0.6;
+  color: var(--header-text-color);
+  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.textarea:focus {
+  outline: none;
+  border: 1px solid var(--main-button-bg-color);
+  opacity: 1;
+  box-shadow: 0px 0px 8px 2px var(--main-button-bg-color);
+}
+
+.textarea::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.28px;
+}
+
+.priorityContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+}
+
+.priorityOptions {
+  display: flex;
+  gap: 8px;
+}
+
+.priorityBubble {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+  opacity: 0.6;
+}
+
+.low {
+  background-color: #8fa1d0;
+}
+
+.medium {
+  background-color: #e09cb5;
+}
+
+.high {
+  background-color: #bedbb0;
+}
+
+.without {
+  background-color: #ffffff4d;
+}
+
+.selected {
+  border: 1px solid black; /* Border la bila selectată */
+}
+
+.priorityBubble:hover {
+  opacity: 0.8;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: center;
+}
+
+.deadlineContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}
+
+.dateInput {
+  border: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  color: var(--main-button-bg-color);
+  background-color: transparent;
+}
+
+.button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  color: var(--header-bg);
+  cursor: pointer;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  margin-top: 40px;
+}
+
+.iconContainer {
+  padding: 7px;
+  background-color: var(--header-bg);
+  border-radius: 8px;
+}
+
+.icon {
+  stroke: var(--header-text-color);
+}
+
+.dateButton {
+  background-color: transparent;
+  padding: 0;
+}
+
+.arrowIcon {
+  color: var(--main-button-bg-color);
+  width: 18px;
+  height: 18px;
+}

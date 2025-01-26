@@ -37,3 +37,5 @@ export const backgrounds = [
   bg14,
   bg15,
 ];
+
+export const backgroundPath = "../assets/images/backgroundsImg";

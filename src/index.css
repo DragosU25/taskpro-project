@@ -86,6 +86,7 @@ code {
   --main-sidebar-project-active-text-color: #fff;
   --main-sidebar-project-active-bg-color: #1f1f1f;
   --main-sidebar-button-color: #b8bcfd;
+  --main-disabled-date-color: rgba(255, 255, 255, 0.2);
 
   --sidebar-bg: #5255bc;
   --sidebar-text-color: #fff;
@@ -104,4 +105,69 @@ body.dark {
 body.violet {
   background-color: #d6d8ff;
   color: #fff;
+}
+
+.react-datepicker {
+  position: absolute !important;
+  padding: 18px;
+  background-color: var(--header-bg) !important; /* Fundal personalizat */
+  color: var(--header-text-color) !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  top: 0px;
+  left: 30px;
+  border: none !important;
+}
+
+.react-datepicker__header {
+  background-color: var(--header-bg) !important;
+  color: var(--header-text-color) !important;
+}
+
+h2.react-datepicker__current-month {
+  color: var(--header-text-color) !important; /* Text alb */
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.32px;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: var(--header-text-color) !important;
+}
+
+.react-datepicker__day--disabled,
+.react-datepicker__month-text--disabled,
+.react-datepicker__quarter-text--disabled,
+.react-datepicker__year-text--disabled {
+  color: rgba(190, 190, 190, 0.8) !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  background-color: var(--main-button-bg-color) !important;
+  border-radius: 50% !important;
+  color: var(--header-text-color) !important;
+}
+
+.react-datepicker__today-button {
+  display: none;
+}
+
+.react-datepicker__day--today {
+  font-weight: bold;
+  color: #ff4500; /* Ziua de astăzi */
 }

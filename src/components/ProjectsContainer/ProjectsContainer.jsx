@@ -16,38 +16,43 @@ function ProjectsContainer({ projects, onEdit }) {
 
   return (
     <div className={styles.container}>
-      {projects?.map((project) => (
-        <NavLink
-          to={`projects/${project._id}`}
-          key={project._id}
-          className={({ isActive }) =>
-            `${styles.link} ${isActive ? styles.active : ""}`
-          }
-        >
-          <div className={`${styles.projectCard}`}>
-            <div className={styles.projectInfoContainer}>
-              <div>
-                <Icon name={project.icon} size={18} extraClass={styles.icon} />
+      {Array.isArray(projects) &&
+        projects.map((project, index) => (
+          <NavLink
+            to={`projects/${project._id}`}
+            key={index}
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
+            }
+          >
+            <div className={`${styles.projectCard}`}>
+              <div className={styles.projectInfoContainer}>
+                <div>
+                  <Icon
+                    name={project.icon}
+                    size={18}
+                    extraClass={styles.icon}
+                  />
+                </div>
+                <h3 className={styles.name}>{project.name}</h3>
               </div>
-              <h3 className={styles.name}>{project.name}</h3>
+              <div className={styles.actionsContainer}>
+                <Icon
+                  name={"edit"}
+                  size={16}
+                  handlerFunction={() => onEdit(project)}
+                  extraClass={styles.icon}
+                />
+                <Icon
+                  name={"delete"}
+                  size={16}
+                  handlerFunction={() => handleDelete(project._id)}
+                  extraClass={styles.icon}
+                />
+              </div>
             </div>
-            <div className={styles.actionsContainer}>
-              <Icon
-                name={"edit"}
-                size={16}
-                handlerFunction={() => onEdit(project)}
-                extraClass={styles.icon}
-              />
-              <Icon
-                name={"delete"}
-                size={16}
-                handlerFunction={() => handleDelete(project._id)}
-                extraClass={styles.icon}
-              />
-            </div>
-          </div>
-        </NavLink>
-      ))}
+          </NavLink>
+        ))}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store/index";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import "modern-normalize/modern-normalize.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 WebFont.load({
   google: {

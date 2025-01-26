@@ -1,0 +1,28 @@
+.title {
+  color: var(--header-text-color);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  margin-bottom: 24px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.iconContainer {
+  background-color: var(--header-text-color);
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.icon {
+  stroke: var(--header-bg);
+}

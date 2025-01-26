@@ -23,16 +23,9 @@
 
 .mainContent {
   flex: 1;
-  padding: 20px;
   overflow-y: auto;
   background-color: var(--main-bg);
   color: var(--main-text-color);
-}
-
-@media (width>=1280px) {
-  .mainContent {
-    margin-left: 260px;
-  }
 }
 
 /* Tranziții */

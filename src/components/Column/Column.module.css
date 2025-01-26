@@ -1,0 +1,56 @@
+.columnNameContainer {
+  background-color: var(--header-bg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  width: 320px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  text-transform: capitalize;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-button-bg-color);
+  height: 56px;
+  width: 320px;
+  border-radius: 8px;
+  gap: 8px;
+}
+
+.addIconContainer {
+  background-color: var(--header-bg);
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.icon {
+  stroke: var(--header-text-color);
+}
+
+.text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  color: var(--header-bg);
+}
+
+.button {
+  padding: 7px;
+}
