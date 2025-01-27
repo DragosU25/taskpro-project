@@ -5,7 +5,7 @@ import App from "./App";
 import WebFont from "webfontloader";
 import { Provider } from "react-redux";
 import store from "./store/index";
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "modern-normalize/modern-normalize.css";
 import "react-datepicker/dist/react-datepicker.css";
 

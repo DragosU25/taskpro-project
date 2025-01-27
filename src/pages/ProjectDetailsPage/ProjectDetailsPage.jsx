@@ -4,7 +4,6 @@ import ProjectColumns from "../../components/ProjectColumns/ProjectColumns";
 import styles from "./ProjectDetailsPage.module.css";
 import { useSelector } from "react-redux";
 import { selectProject } from "../../redux/project/selectors";
-import { backgroundPath } from "../../utils";
 
 function ProjectDetailsPage() {
   const { id } = useParams();
