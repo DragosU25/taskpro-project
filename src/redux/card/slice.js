@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCards, addCard, editCard, deleteCard, moveCard } from "./operators";
 
+// Inițializăm state-ul
 const initialState = {
-  cardsByColumn: {}, // Stocăm cardurile pentru fiecare coloană
+  cards: {}, // Carduri stocate cu ID-uri unice
+  columns: {}, // Coloane care mapază columnId către un array de cardIds
   isLoading: false,
   error: null,
 };
@@ -12,9 +14,8 @@ const cardsSlice = createSlice({
   initialState,
   reducers: {
     resetCardsState: (state) => {
-      state.cardsByColumn = {
-        columnId: null,
-      };
+      state.cards = {};
+      state.columns = {};
       state.isLoading = false;
       state.error = null;
     },
@@ -22,15 +23,28 @@ const cardsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // Get Cards
-      .addCase(getCards.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
       .addCase(getCards.fulfilled, (state, action) => {
         const { columnId, cards } = action.payload;
         state.isLoading = false;
-        state.cardsByColumn[columnId] = cards;
+
+        // Adăugăm cardurile la state
+        cards.data.forEach((card) => {
+          state.cards[card._id] = card; // Adăugăm cardul în state.cards folosind ID-ul
+        });
+
+        if (!state.columns[columnId]) {
+          state.columns[columnId] = [];
+        }
+
+        // Adăugăm cardId-urile, prevenind duplicarea
+        const newCardIds = cards.data.map((card) => card._id);
+
+        // Filtrăm cardurile duplicate
+        state.columns[columnId] = [
+          ...new Set([...state.columns[columnId], ...newCardIds]), // Set elimină duplicatele
+        ];
       })
+
       .addCase(getCards.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || action.error.message || "Unknown error";
@@ -42,18 +56,37 @@ const cardsSlice = createSlice({
         state.error = null;
       })
       .addCase(addCard.fulfilled, (state, action) => {
-        const { columnId, newCard } = action.payload.data;
+        console.log(action.payload);
+
+        if (
+          !action.payload.data ||
+          !action.payload.data._id ||
+          !action.payload.data.columnId
+        ) {
+          console.error(
+            "Eroare: Cardul nou nu are date valide:",
+            action.payload.data
+          );
+          return;
+        }
 
         state.isLoading = false;
 
-        // Verificăm dacă `columnId` există în `cardsByColumn`, altfel îl inițializăm
-        if (!Array.isArray(state.cardsByColumn[columnId])) {
-          state.cardsByColumn[columnId] = []; // Inițializare ca array gol
-        }
+        // Adaugă cardul în `state.cards`
+        state.cards[action.payload.data._id] = action.payload.data;
 
-        // Adăugăm cardul nou la array-ul coloanei
-        state.cardsByColumn[columnId].push(newCard);
-        console.log("cards by column", state.cardsByColumn);
+        // Adaugă `cardId` în coloana corespunzătoare
+        if (!state.columns[action.payload.data.columnId]) {
+          state.columns[action.payload.data.columnId] = [];
+        }
+        state.columns[action.payload.data.columnId].push(
+          action.payload.data._id
+        );
+      })
+
+      .addCase(addCard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || action.error.message || "Unknown error";
       })
 
       // Edit Card
@@ -62,27 +95,14 @@ const cardsSlice = createSlice({
         state.error = null;
       })
       .addCase(editCard.fulfilled, (state, action) => {
-        const { columnId, updatedCard } = action.payload;
-        console.log(action.payload);
+        const { updatedCard } = action.payload;
         state.isLoading = false;
 
-        // Verificăm dacă `columnId` există în `cardsByColumn`
-        if (Array.isArray(state.cardsByColumn[columnId])) {
-          // Găsim indexul cardului de actualizat
-          const index = state.cardsByColumn[columnId].findIndex(
-            (card) => card._id === updatedCard._id
-          );
-
-          if (index !== -1) {
-            // Actualizăm cardul în array-ul corespunzător
-            state.cardsByColumn[columnId] = state.cardsByColumn[columnId].map(
-              (card) =>
-                card._id === updatedCard._id
-                  ? { ...card, ...updatedCard }
-                  : card
-            );
-          }
-        }
+        // Actualizăm cardul în state
+        state.cards[updatedCard._id] = {
+          ...state.cards[updatedCard._id], // Cardul existent
+          ...updatedCard, // Datele actualizate
+        };
       })
       .addCase(editCard.rejected, (state, action) => {
         state.isLoading = false;
@@ -97,20 +117,21 @@ const cardsSlice = createSlice({
       .addCase(deleteCard.fulfilled, (state, action) => {
         state.isLoading = false;
 
-        const { columnId, deletedCard } = action.payload.data;
+        const { deletedCard, columnCards } = action.payload.data;
 
-        // Verificăm dacă `columnId` există în state
-        if (Array.isArray(state.cardsByColumn[columnId])) {
-          // Filtrăm cardurile pentru a elimina cardul șters
-          state.cardsByColumn[columnId] = state.cardsByColumn[columnId].filter(
-            (card) => card._id !== deletedCard
-          );
+        // Ștergem cardul din state.cards
+        delete state.cards[deletedCard];
 
-          console.log(`Card ${deletedCard} deleted from column ${columnId}`);
-        } else {
-          console.error(`Column ${columnId} not found in state`);
+        // Actualizăm cardurile din coloana respectivă
+        const columnId = Object.keys(state.columns).find((colId) =>
+          state.columns[colId].includes(deletedCard)
+        );
+
+        if (columnId) {
+          state.columns[columnId] = columnCards; // Sincronizăm cu array-ul gol primit din backend
         }
       })
+
       .addCase(deleteCard.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || action.error.message || "Unknown error";
@@ -123,7 +144,19 @@ const cardsSlice = createSlice({
       })
       .addCase(moveCard.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.cards = action.payload || state.cards; // Fallback dacă backend-ul nu trimite lista completă
+        const { fromColumnId, toColumnId, cardId } = action.payload;
+
+        // Mutăm cardul între coloane
+        if (state.columns[fromColumnId]) {
+          state.columns[fromColumnId] = state.columns[fromColumnId].filter(
+            (id) => id !== cardId
+          );
+        }
+
+        if (!state.columns[toColumnId]) {
+          state.columns[toColumnId] = [];
+        }
+        state.columns[toColumnId].push(cardId);
       })
       .addCase(moveCard.rejected, (state, action) => {
         state.isLoading = false;

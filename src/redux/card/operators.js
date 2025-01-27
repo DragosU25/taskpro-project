@@ -95,33 +95,26 @@ export const editCard = createAsyncThunk(
 );
 
 export const deleteCard = createAsyncThunk(
-  "card/deleteCard",
+  "cards/deleteCard",
   async ({ columnId, cardId }, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `project/columns/cards/${columnId}/deleteCard/${cardId}`,
+        `/project/columns/cards/${columnId}/deleteCard/${cardId}`,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
-
-      // Verifică răspunsul complet
-      console.log("Delete response:", response.data);
-
-      return response.data; // Asigură-te că returnezi răspunsul corect
+      console.log("Backend response:", response.data); // Confirmăm răspunsul
+      return response.data;
     } catch (error) {
-      if (error.response) {
-        console.error("Error response from server:", error.response.data);
-        return rejectWithValue(error.response.data);
-      } else {
-        console.error("Network or other error occurred:", error.message);
-        return rejectWithValue({
-          message: "A network error occurred.",
-        });
-      }
+      console.error(
+        "Error deleting card:",
+        error.response?.data || error.message
+      );
+      return rejectWithValue(
+        error.response?.data || { message: "Network error" }
+      );
     }
   }
 );

@@ -19,13 +19,7 @@ import DeleteModal from "../DeleteCardModal/DeleteModal";
 
 const Column = ({ column }) => {
   const dispatch = useDispatch();
-  const cards = useSelector((state) => {
-    selectCardsByColumn(state, column._id);
-
-    return selectCardsByColumn(state, column._id);
-  });
-
-  console.log("cards", cards);
+  const cards = useSelector((state) => selectCardsByColumn(state, column._id));
 
   const [modalContent, setModalContent] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -39,10 +33,6 @@ const Column = ({ column }) => {
     setModalContent(null);
     setModalVisible(false);
   };
-
-  useEffect(() => {
-    dispatch(getCards(column._id));
-  }, [dispatch]);
 
   //TO DO : FA CARDURILE SA APARA FARA A DA REFRESH
   const handleAddCard = () => {
@@ -74,7 +64,7 @@ const Column = ({ column }) => {
         message="Are you sure you want to delete this card?"
         handleModalClose={handleModalClose}
         onConfirm={() =>
-          dispatch(deleteCard(columnId, cardId))
+          dispatch(deleteCard({ columnId, cardId }))
             .unwrap()
             .then(() => console.log("Card deleted successfully"))
             .catch((error) => console.error("Failed to delete card:", error))
@@ -135,6 +125,10 @@ const Column = ({ column }) => {
     );
   };
 
+  useEffect(() => {
+    dispatch(getCards(column._id));
+  }, [dispatch, column._id]);
+
   return (
     <>
       <div className={styles.container}>
@@ -150,7 +144,7 @@ const Column = ({ column }) => {
           </div>
         </div>
         <CardList
-          cards={cards.data || []}
+          cards={cards || []}
           onEdit={handleEditCard}
           onDelete={(cardId) => {
             handleDeleteCard(cardId);

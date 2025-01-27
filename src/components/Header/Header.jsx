@@ -28,7 +28,7 @@ function Header({ toggleSidebar }) {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [email, username]);
+  }, [dispatch, email, username]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen); // Comută starea modalului
