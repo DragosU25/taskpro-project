@@ -26,8 +26,12 @@ function ProjectColumns() {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleModalOpen = (content) => {
-    setModalContent(content);
-    setModalVisible(true);
+    if (content) {
+      setModalContent(content);
+      setModalVisible(true);
+    } else {
+      console.error("Invalid content passed to modal.");
+    }
   };
 
   const handleModalClose = () => {
@@ -41,11 +45,14 @@ function ProjectColumns() {
 
   useEffect(() => {
     dispatch(resetColumnsState());
-
     if (projectId) {
       dispatch(getColumns(projectId));
     }
-    return;
+
+    // Cleanup function to reset columns when component unmounts or projectId changes
+    return () => {
+      dispatch(resetColumnsState());
+    };
   }, [dispatch, projectId]);
 
   if (isLoading) return <p>Loading columns...</p>;
@@ -70,7 +77,7 @@ function ProjectColumns() {
         handleModalClose={handleModalClose}
         extraClass={styles.modal}
       >
-        {modalContent}
+        {modalContent ? modalContent : null}
       </Modal>
     </>
   );

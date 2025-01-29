@@ -46,8 +46,6 @@ export const addCard = createAsyncThunk(
           },
         }
       );
-
-      console.log("add response", response.data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -78,8 +76,6 @@ export const editCard = createAsyncThunk(
         }
       );
 
-      console.log("Backend response:", response.data);
-
       return {
         columnId,
         updatedCard: response.data.data, // Preia corect cardul actualizat din `data`
@@ -105,7 +101,6 @@ export const deleteCard = createAsyncThunk(
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log("Backend response:", response.data); // Confirmăm răspunsul
       return response.data;
     } catch (error) {
       console.error(
@@ -121,7 +116,8 @@ export const deleteCard = createAsyncThunk(
 
 export const moveCard = createAsyncThunk(
   "card/moveCard",
-  async ({ fromColumnId, cardId, toColumnId }, rejectWithValue) => {
+  async ({ fromColumnId, cardId, toColumnId }, { rejectWithValue }) => {
+    console.log(fromColumnId, cardId, toColumnId);
     try {
       const token = localStorage.getItem("token");
       const response = await axios.patch(
