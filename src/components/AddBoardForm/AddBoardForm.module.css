@@ -73,3 +73,7 @@
 .background:hover {
   opacity: 0.7; /* Show some feedback when hovered */
 }
+
+.title {
+  color: var(--header-text-color);
+}

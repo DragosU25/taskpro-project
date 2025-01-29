@@ -5,6 +5,7 @@ import {
   deleteCard,
   editCard,
   getCards,
+  moveCard,
 } from "../../redux/card/operators";
 import { selectCardsByColumn } from "../../redux/card/selectors";
 import CardList from "../CardsList/CardsList";
@@ -17,7 +18,7 @@ import AddColumnForm from "../AddColumnForm/AddColumnForm";
 import { deleteColumn } from "../../redux/column/operators";
 import DeleteModal from "../DeleteCardModal/DeleteModal";
 
-const Column = ({ column }) => {
+const Column = React.memo(({ column }) => {
   const dispatch = useDispatch();
   const cards = useSelector((state) => selectCardsByColumn(state, column._id));
 
@@ -25,6 +26,11 @@ const Column = ({ column }) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleModalOpen = (content) => {
+    if (typeof content !== "function") {
+      console.error(
+        "The content passed to the modal is not a valid component."
+      );
+    }
     setModalContent(content);
     setModalVisible(true);
   };
@@ -34,7 +40,6 @@ const Column = ({ column }) => {
     setModalVisible(false);
   };
 
-  //TO DO : FA CARDURILE SA APARA FARA A DA REFRESH
   const handleAddCard = () => {
     handleModalOpen(
       <CardForm
@@ -45,8 +50,11 @@ const Column = ({ column }) => {
             .unwrap()
             .then((newCard) => {
               console.log("Card added successfully:", newCard);
-              // Actualizează starea locală (sau folosește Redux dacă e cazul)
-              dispatch(getCards(column._id)); // Sau actualizare locală dacă e necesar
+              // Update the column's card list by adding the new card ID
+              dispatch({
+                type: "cards/columnAddedCard",
+                payload: { columnId: column._id, cardId: newCard._id },
+              });
             })
             .catch((error) => {
               console.error("Failed to add card:", error);
@@ -55,6 +63,7 @@ const Column = ({ column }) => {
       />
     );
   };
+
   const handleDeleteCard = (cardId) => {
     const columnId = column._id;
 
@@ -105,8 +114,13 @@ const Column = ({ column }) => {
     );
   };
 
-  const handleMoveCard = (cardId, targetColumnId) => {
-    // Logica pentru mutarea unui card între coloane
+  const handleMoveCard = (toColumnId, card) => {
+    dispatch(
+      moveCard({ toColumnId, cardId: card._id, fromColumnId: card.columnId })
+    )
+      .unwrap()
+      .then(() => console.log("✅ Card moved successfully"))
+      .catch((error) => console.error("❌ Failed to move card:", error));
   };
 
   const handleDeleteColumn = () => {
@@ -149,7 +163,7 @@ const Column = ({ column }) => {
           onDelete={(cardId) => {
             handleDeleteCard(cardId);
           }}
-          onMove={handleMoveCard}
+          onMove={(card, toColumnId) => handleMoveCard(toColumnId, card)}
         />
 
         <div className={styles.addContainer}>
@@ -166,10 +180,11 @@ const Column = ({ column }) => {
         handleModalClose={handleModalClose}
         extraClass={styles.modal}
       >
-        {modalContent}
+        {modalContent}{" "}
+        {/* Make sure modalContent is always a valid component */}
       </Modal>
     </>
   );
-};
+});
 
 export default Column;

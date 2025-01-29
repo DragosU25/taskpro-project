@@ -128,7 +128,7 @@ const cardsSlice = createSlice({
         );
 
         if (columnId) {
-          state.columns[columnId] = columnCards; // Sincronizăm cu array-ul gol primit din backend
+          state.columns[columnId] = columnCards || []; // Sincronizăm cu backend-ul
         }
       })
 
@@ -145,19 +145,31 @@ const cardsSlice = createSlice({
       .addCase(moveCard.fulfilled, (state, action) => {
         state.isLoading = false;
         const { fromColumnId, toColumnId, cardId } = action.payload;
+        const normalizedCardId = cardId.toString();
 
-        // Mutăm cardul între coloane
-        if (state.columns[fromColumnId]) {
-          state.columns[fromColumnId] = state.columns[fromColumnId].filter(
-            (id) => id !== cardId
+        // Creăm copii pentru referințe noi
+        const updatedColumns = { ...state.columns };
+
+        // Eliminăm cardul din coloana sursă
+        if (updatedColumns[fromColumnId]) {
+          updatedColumns[fromColumnId] = updatedColumns[fromColumnId].filter(
+            (id) => id.toString() !== normalizedCardId
           );
         }
 
-        if (!state.columns[toColumnId]) {
-          state.columns[toColumnId] = [];
+        // Adăugăm cardul în coloana destinație
+        if (!updatedColumns[toColumnId]) {
+          updatedColumns[toColumnId] = [];
         }
-        state.columns[toColumnId].push(cardId);
+        updatedColumns[toColumnId] = [
+          ...updatedColumns[toColumnId],
+          normalizedCardId,
+        ];
+
+        // Înlocuim `state.columns` cu noua referință
+        state.columns = updatedColumns;
       })
+
       .addCase(moveCard.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || action.error.message || "Unknown error";
