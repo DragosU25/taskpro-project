@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/taskpro-project/static/css/main.2206d411.css",
-    "main.js": "/taskpro-project/static/js/main.16612c21.js",
+    "main.css": "/taskpro-project/static/css/main.f9aab31b.css",
+    "main.js": "/taskpro-project/static/js/main.14e87fef.js",
     "static/css/431.a936c0ff.chunk.css": "/taskpro-project/static/css/431.a936c0ff.chunk.css",
-    "static/js/431.26272eb7.chunk.js": "/taskpro-project/static/js/431.26272eb7.chunk.js",
+    "static/js/431.2f65c7f3.chunk.js": "/taskpro-project/static/js/431.2f65c7f3.chunk.js",
     "static/css/140.ab57f083.chunk.css": "/taskpro-project/static/css/140.ab57f083.chunk.css",
     "static/js/140.183e2d03.chunk.js": "/taskpro-project/static/js/140.183e2d03.chunk.js",
     "static/css/909.d242fffb.chunk.css": "/taskpro-project/static/css/909.d242fffb.chunk.css",
@@ -11,16 +11,17 @@
     "static/css/230.9b5f9cfa.chunk.css": "/taskpro-project/static/css/230.9b5f9cfa.chunk.css",
     "static/js/230.5e404ff0.chunk.js": "/taskpro-project/static/js/230.5e404ff0.chunk.js",
     "static/js/592.9042244a.chunk.js": "/taskpro-project/static/js/592.9042244a.chunk.js",
-    "static/css/443.3db80ba7.chunk.css": "/taskpro-project/static/css/443.3db80ba7.chunk.css",
-    "static/js/443.c94c5f5e.chunk.js": "/taskpro-project/static/js/443.c94c5f5e.chunk.js",
-    "static/js/593.1fb7f4cc.chunk.js": "/taskpro-project/static/js/593.1fb7f4cc.chunk.js",
+    "static/css/474.07715b4a.chunk.css": "/taskpro-project/static/css/474.07715b4a.chunk.css",
+    "static/js/474.0d500ed4.chunk.js": "/taskpro-project/static/js/474.0d500ed4.chunk.js",
+    "static/js/593.5a7a650b.chunk.js": "/taskpro-project/static/js/593.5a7a650b.chunk.js",
+    "static/media/blank-profile-picture.png": "/taskpro-project/static/media/blank-profile-picture.095de2657a3c6d22d251.png",
     "static/media/homePageImg.png": "/taskpro-project/static/media/homePageImg.ed0d2e2b8eaf51594184.png",
-    "static/media/sprite.svg": "/taskpro-project/static/media/sprite.31cab9f3ca7ac585ae88266aea8620fc.svg",
+    "static/media/sprite.svg": "/taskpro-project/static/media/sprite.13c011fc66ecd71261eaed682680f3f3.svg",
     "index.html": "/taskpro-project/index.html",
-    "main.2206d411.css.map": "/taskpro-project/static/css/main.2206d411.css.map",
-    "main.16612c21.js.map": "/taskpro-project/static/js/main.16612c21.js.map",
+    "main.f9aab31b.css.map": "/taskpro-project/static/css/main.f9aab31b.css.map",
+    "main.14e87fef.js.map": "/taskpro-project/static/js/main.14e87fef.js.map",
     "431.a936c0ff.chunk.css.map": "/taskpro-project/static/css/431.a936c0ff.chunk.css.map",
-    "431.26272eb7.chunk.js.map": "/taskpro-project/static/js/431.26272eb7.chunk.js.map",
+    "431.2f65c7f3.chunk.js.map": "/taskpro-project/static/js/431.2f65c7f3.chunk.js.map",
     "140.ab57f083.chunk.css.map": "/taskpro-project/static/css/140.ab57f083.chunk.css.map",
     "140.183e2d03.chunk.js.map": "/taskpro-project/static/js/140.183e2d03.chunk.js.map",
     "909.d242fffb.chunk.css.map": "/taskpro-project/static/css/909.d242fffb.chunk.css.map",
@@ -28,12 +29,12 @@
     "230.9b5f9cfa.chunk.css.map": "/taskpro-project/static/css/230.9b5f9cfa.chunk.css.map",
     "230.5e404ff0.chunk.js.map": "/taskpro-project/static/js/230.5e404ff0.chunk.js.map",
     "592.9042244a.chunk.js.map": "/taskpro-project/static/js/592.9042244a.chunk.js.map",
-    "443.3db80ba7.chunk.css.map": "/taskpro-project/static/css/443.3db80ba7.chunk.css.map",
-    "443.c94c5f5e.chunk.js.map": "/taskpro-project/static/js/443.c94c5f5e.chunk.js.map",
-    "593.1fb7f4cc.chunk.js.map": "/taskpro-project/static/js/593.1fb7f4cc.chunk.js.map"
+    "474.07715b4a.chunk.css.map": "/taskpro-project/static/css/474.07715b4a.chunk.css.map",
+    "474.0d500ed4.chunk.js.map": "/taskpro-project/static/js/474.0d500ed4.chunk.js.map",
+    "593.5a7a650b.chunk.js.map": "/taskpro-project/static/js/593.5a7a650b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2206d411.css",
-    "static/js/main.16612c21.js"
+    "static/css/main.f9aab31b.css",
+    "static/js/main.14e87fef.js"
   ]
 }
