@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL =
+  "http://localhost:5000/api" || "https://taskpro-api-ca4u.onrender.com";
 
 // Helper function to set Authorization header
 export const setAuthHeader = (token) => {
