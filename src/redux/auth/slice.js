@@ -20,7 +20,7 @@ const initialState = {
   },
   verificationToken: null,
   isAuthenticated: false,
-  isVerified: false, // Utilizatorul și-a verificat emailul?
+  isVerified: false,
   loading: false,
   error: null,
 };
@@ -52,10 +52,9 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.user = action.payload.result.user;
         state.verificationToken = action.payload.result.user.verificationToken;
-        state.isAuthenticated = false; // Setăm explicit autentificarea la `false` după înregistrare
+        state.isAuthenticated = false;
         state.isVerified = false;
 
         console.log("Register Success:", action.payload);
@@ -71,7 +70,6 @@ const authSlice = createSlice({
       })
       .addCase(resendVerificationEmail.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("Resend Email Success:", action.payload);
       })
       .addCase(resendVerificationEmail.rejected, (state, action) => {
         state.loading = false;
@@ -131,7 +129,7 @@ const authSlice = createSlice({
       })
       .addCase(updateTheme.fulfilled, (state, action) => {
         state.loading = false;
-        state.theme = action.payload; // Setează tema returnată din backend
+        state.theme = action.payload;
       })
       .addCase(updateTheme.rejected, (state, action) => {
         state.loading = false;

@@ -7,7 +7,7 @@ import { backgrounds } from "../../utils";
 import { useDispatch } from "react-redux";
 import { addProject, getProjects } from "../../redux/project/operators";
 
-const AddBoardForm = () => {
+const AddBoardForm = ({ handleModalClose }) => {
   const dispatch = useDispatch();
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
@@ -44,31 +44,27 @@ const AddBoardForm = () => {
     }
 
     try {
-      // Map the selected background to the desired format, e.g., bg1, bg2, ...
       const formattedBackground = `bg${
         backgrounds.indexOf(selectedBackground) + 1
       }`;
 
-      // Dispatch the form data along with selected icon and formatted background
       await dispatch(
         addProject({
           name: formData.name,
           icon: selectedIcon,
-          background: formattedBackground, // Send background as bg1, bg2, ...
+          background: formattedBackground,
         })
       );
 
       await dispatch(getProjects());
 
-      // Optionally reset form state
       setFormData({ name: "", icon: "", background: "" });
       setSelectedIcon(null);
       setSelectedBackground(null);
-
-      alert("Board created successfully!");
+      handleModalClose();
     } catch (error) {
       console.error("Error creating board:", error);
-      alert("An error occurred while creating the board. Please try again.");
+      handleModalClose();
     }
   };
 
@@ -76,7 +72,6 @@ const AddBoardForm = () => {
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2 className={styles.title}>New board</h2>
 
-      {/* Input for title */}
       <InputField
         type="text"
         name="name"
@@ -85,7 +80,6 @@ const AddBoardForm = () => {
         handleChange={handleChange}
       />
 
-      {/* Select Icon */}
       <div className={styles.icons}>
         <label className={styles.label}>Icons</label>
         <div className={styles.iconGrid}>
@@ -95,7 +89,7 @@ const AddBoardForm = () => {
               className={`${styles.icon} ${
                 selectedIcon === icon ? styles.selected : ""
               }`}
-              onClick={() => setSelectedIcon(icon)} // Set icon when clicked
+              onClick={() => setSelectedIcon(icon)}
             >
               <Icon name={icon} size={24} color="#fff" />
             </div>
@@ -103,7 +97,6 @@ const AddBoardForm = () => {
         </div>
       </div>
 
-      {/* Select Background */}
       <div className={styles.backgrounds}>
         <label className={styles.label}>Background</label>
         <div className={styles.backgroundGrid}>
@@ -113,7 +106,7 @@ const AddBoardForm = () => {
               className={`${styles.background} ${
                 selectedBackground === bg ? styles.selected : ""
               }`}
-              onClick={() => setSelectedBackground(bg)} // Set background when clicked
+              onClick={() => setSelectedBackground(bg)}
             >
               <img
                 src={bg}
@@ -125,7 +118,6 @@ const AddBoardForm = () => {
         </div>
       </div>
 
-      {/* Submit Button */}
       <div className={styles.buttons}>
         <Button type="submit">+ Create</Button>
       </div>

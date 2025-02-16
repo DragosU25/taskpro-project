@@ -3,60 +3,57 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
+// Funcție utilă pentru header-ul de autorizare
+const getAuthHeader = () => {
+  const token = localStorage.getItem("token");
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
 export const getCards = createAsyncThunk(
   "card/getCards",
   async (columnId, { rejectWithValue }) => {
-    const token = localStorage.getItem("token");
     try {
       const response = await axios.get(
         `/project/columns/cards/${columnId}/getCards`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        getAuthHeader()
       );
 
-      return { columnId, cards: response.data }; // Adaugă columnId la răspuns
+      return { columnId, cards: response.data };
     } catch (error) {
       if (error.response) {
         return rejectWithValue(error.response.data);
-      } else {
-        return rejectWithValue({
-          message: "A network error occurred.",
-        });
       }
+      return rejectWithValue({
+        message: "A network error occurred.",
+      });
     }
   }
 );
 
 export const addCard = createAsyncThunk(
   "card/addCard",
-  async ({ cardData, columnId }, rejectWithValue) => {
+  async ({ cardData, columnId }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
-
-      // Trimite cardData corect în corpul request-ului
       const response = await axios.post(
         `project/columns/cards/${columnId}/addCard`,
-        cardData, // cardData trimis direct aici
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        cardData,
+        getAuthHeader()
       );
       return response.data;
     } catch (error) {
-      if (error.response) {
-        console.error("Error response from server:", error.response.data);
-        return rejectWithValue(error.response.data);
-      } else {
-        console.error("Network or other error occurred:", error.message);
-        return rejectWithValue({
+      console.error(
+        "Error adding card:",
+        error.response?.data || error.message
+      );
+      return rejectWithValue(
+        error.response?.data || {
           message: "A network error occurred.",
-        });
-      }
+        }
+      );
     }
   }
 );
@@ -65,27 +62,24 @@ export const editCard = createAsyncThunk(
   "cards/editCard",
   async ({ updatedData, columnId, cardId }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.patch(
         `project/columns/cards/${columnId}/editCard/${cardId}`,
         updatedData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        getAuthHeader()
       );
 
       return {
         columnId,
-        updatedCard: response.data.data, // Preia corect cardul actualizat din `data`
+        updatedCard: response.data.data,
       };
     } catch (error) {
-      if (error.response) {
-        console.error("Error response from server:", error.response.data);
-        return rejectWithValue(error.response.data);
-      }
-      return rejectWithValue({ message: "A network error occurred." });
+      console.error(
+        "Error editing card:",
+        error.response?.data || error.message
+      );
+      return rejectWithValue(
+        error.response?.data || { message: "A network error occurred." }
+      );
     }
   }
 );
@@ -94,12 +88,9 @@ export const deleteCard = createAsyncThunk(
   "cards/deleteCard",
   async ({ columnId, cardId }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.delete(
         `/project/columns/cards/${columnId}/deleteCard/${cardId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        getAuthHeader()
       );
       return response.data;
     } catch (error) {
@@ -115,30 +106,38 @@ export const deleteCard = createAsyncThunk(
 );
 
 export const moveCard = createAsyncThunk(
-  "card/moveCard",
-  async ({ fromColumnId, cardId, toColumnId }, { rejectWithValue }) => {
-    console.log(fromColumnId, cardId, toColumnId);
+  "cards/moveCard",
+  async ({ cardId, fromColumnId, toColumnId }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
+      console.log("Moving card:", { cardId, fromColumnId, toColumnId });
+
+      if (!cardId || !fromColumnId || !toColumnId) {
+        throw new Error(
+          `Missing required parameters: ${!cardId ? "cardId " : ""}${
+            !fromColumnId ? "fromColumnId " : ""
+          }${!toColumnId ? "toColumnId" : ""}`
+        );
+      }
+
       const response = await axios.patch(
-        `project/columns/cards/${fromColumnId}/moveCard/${cardId}/${toColumnId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `/project/columns/cards/move/${fromColumnId}/${cardId}/${toColumnId}`,
+        {}, // body gol
+        getAuthHeader()
       );
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+
       return response.data;
     } catch (error) {
-      if (error.response) {
-        console.error("Error response from server:", error.response.data);
-        return rejectWithValue(error.response.data);
-      } else {
-        console.error("Network or other error occurred:", error.message);
-        return rejectWithValue({
-          message: "A network error occurred.",
-        });
-      }
+      console.error(
+        "Error moving card:",
+        error.response?.data || error.message
+      );
+      return rejectWithValue(
+        error.response?.data || { message: "Network error occurred" }
+      );
     }
   }
 );

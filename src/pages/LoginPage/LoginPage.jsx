@@ -36,7 +36,7 @@ const LoginPage = () => {
       setError("Password is required.");
       return false;
     }
-    setError(""); // Clear errors if validation passes
+    setError("");
     return true;
   };
 
@@ -48,13 +48,13 @@ const LoginPage = () => {
     try {
       const action = await dispatch(loginUser(userData)).unwrap();
       Notiflix.Notify.success("Login successful!");
-      navigate("/dashboard"); // Redirecționare către dashboard
+      navigate("/dashboard");
       return action;
     } catch (error) {
       Notiflix.Notify.failure(
         "Login failed. Please check your credentials and try again."
       );
-      setError("Invalid email or password."); // Afișează eroarea sub formular
+      setError("Invalid email or password.");
       console.error("Login failed:", error);
     } finally {
       setLoading(false);

@@ -48,8 +48,6 @@ function ProjectColumns() {
     if (projectId) {
       dispatch(getColumns(projectId));
     }
-
-    // Cleanup function to reset columns when component unmounts or projectId changes
     return () => {
       dispatch(resetColumnsState());
     };
@@ -68,6 +66,7 @@ function ProjectColumns() {
           <Button extraClass={styles.button} handlerFunction={handleAddColumn}>
             <Icon name={"plus"} size={14} extraClass={styles.icon} />
           </Button>
+
           <p className={styles.text}> Add another column</p>
         </div>
       </div>

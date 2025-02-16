@@ -3,6 +3,15 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
+const getAuthHeader = () => {
+  const token = localStorage.getItem("token");
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
 export const addColumn = createAsyncThunk(
   "column/addColumn",
   async ({ columnName, projectId }, { rejectWithValue }) => {
@@ -11,15 +20,10 @@ export const addColumn = createAsyncThunk(
         return rejectWithValue({ message: "Name field is required." });
       }
 
-      const token = localStorage.getItem("token");
       const response = await axios.post(
         `/project/columns/${projectId}`,
         { columnName },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        getAuthHeader()
       );
       return response.data;
     } catch (error) {
@@ -40,12 +44,10 @@ export const getColumns = createAsyncThunk(
   "column/getColumns",
   async (projectId, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(`/project/columns/${projectId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `/project/columns/${projectId}`,
+        getAuthHeader()
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -65,20 +67,10 @@ export const editColumn = createAsyncThunk(
   "column/editColumn",
   async ({ columnId, updateData }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        return rejectWithValue({ message: "Authorization token is missing." });
-      }
-
-      // Trimite cererea PATCH
       const response = await axios.patch(
         `/project/columns/${columnId}`,
-        updateData, // Datele de actualizare
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        updateData,
+        getAuthHeader()
       );
 
       return response.data;
@@ -100,12 +92,10 @@ export const deleteColumn = createAsyncThunk(
   "columns/deleteColumn",
   async (columnId, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.delete(`/project/columns/${columnId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.delete(
+        `/project/columns/${columnId}`,
+        getAuthHeader()
+      );
       return response.data;
     } catch (error) {
       console.error("Error deleting column:", error.response?.data || error);

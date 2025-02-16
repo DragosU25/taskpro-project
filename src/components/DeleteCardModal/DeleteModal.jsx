@@ -5,10 +5,10 @@ import styles from "./DeleteModa.module.css";
 function DeleteModal({ title, message, onConfirm, handleModalClose }) {
   const handleConfirm = async () => {
     try {
-      await onConfirm(); // Execută funcția de confirmare transmisă ca prop
-      handleModalClose(); // Închide modalul după succes
+      await onConfirm();
+      handleModalClose();
     } catch (error) {
-      console.error("Error in DeleteModal:", error); // Gestionează eventuale erori
+      console.error("Error in DeleteModal:", error);
     }
   };
 

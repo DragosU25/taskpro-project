@@ -1,0 +1,39 @@
+.contentContainer {
+  padding: 14px;
+  background-color: var(--help-container-bg);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.container {
+  padding: 14px;
+  padding-top: 30px;
+  padding-bottom: 29px;
+}
+
+.helpContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.img {
+  width: 54px;
+  height: 78px;
+  flex-shrink: 0;
+}
+
+.text {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.24px;
+  width: 168px;
+}
+
+.text span {
+  color: var(--main-button-bg-color);
+}

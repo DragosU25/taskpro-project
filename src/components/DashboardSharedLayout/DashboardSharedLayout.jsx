@@ -22,7 +22,7 @@ const DashboardSharedLayout = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        closeSidebar(); // Închide sidebar-ul dacă s-a făcut click în afară
+        closeSidebar();
       }
     };
 
@@ -46,7 +46,6 @@ const DashboardSharedLayout = () => {
     <div className={`${styles.dashboardContainer} ${theme}`}>
       <Header toggleSidebar={toggleSidebar} />
       <div className={styles.contentWrapper}>
-        {/* Trebuie să trecem `ref` pentru Sidebar */}
         <SideBar ref={sidebarRef} isSidebarOpen={isSidebarOpen} />
         <main className={styles.mainContent}>
           <Outlet />

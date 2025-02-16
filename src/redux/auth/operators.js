@@ -86,12 +86,12 @@ export const updateAvatar = createAsyncThunk(
 
       const response = await axios.post("/auth/avatars", formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Important pentru upload fișiere
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      return response.data.avatarURL; // Returnează URL-ul avatarului
+      return response.data.avatarURL;
     } catch (error) {
       return rejectWithValue(
         error.response?.data || { message: "Failed to update avatar" }
@@ -107,11 +107,11 @@ export const updateTheme = createAsyncThunk(
       const token = localStorage.getItem("token");
 
       const response = await axios.patch(
-        "/auth/user", // corectăm eroarea din PATCH
+        "/auth/user",
         { theme },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Folosește tokenul din Redux
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -158,7 +158,7 @@ export const getCurrentUser = createAsyncThunk(
     }
 
     try {
-      setAuthHeader(token); // Set token in headers
+      setAuthHeader(token);
       const response = await axios.get("/auth/current", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -189,7 +189,7 @@ export const logoutUser = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      clearAuthHeader(); // Clear token from headers and localStorage
+      clearAuthHeader();
     } catch (error) {
       return rejectWithValue(
         error.response?.data || { message: "Logout failed" }

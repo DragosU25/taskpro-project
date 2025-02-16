@@ -11,7 +11,7 @@ function CardList({ cards, onEdit, onDelete, onMove }) {
           card={card}
           onEdit={() => onEdit(card)}
           onDelete={() => onDelete(card._id)}
-          onMove={(card, toColumnId) => onMove(card, toColumnId)} // Include card ID
+          onMove={(card, toColumnId) => onMove(card, toColumnId)}
         />
       ))}
     </div>

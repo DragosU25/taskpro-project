@@ -4,8 +4,6 @@ import svgIcons from "../../../assets/images/sprite.svg";
 import styles from "./SvgIcon.module.css";
 
 const Icon = ({ name, color, size, handlerFunction, extraClass }) => {
-  // Calea către fișierul sprite.svg
-
   return (
     <svg
       className={`${styles.icon} ${extraClass}`}

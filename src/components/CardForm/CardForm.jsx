@@ -12,13 +12,12 @@ const CardForm = ({ columnId, handleClose, onSubmit, card }) => {
   const [cardData, setCardData] = useState({
     cardName: card?.cardName || "",
     cardDescription: card?.cardDescription || "",
-    cardPriority: card?.cardPriority || "Low", // Prioritate implicită
-    deadlineDate: card?.cardDeadline || "", // Asigură-te că este corect setat
+    cardPriority: card?.cardPriority || "Low",
+    deadlineDate: card?.cardDeadline || "",
   });
 
-  const [isCalendarVisible, setIsCalendarVisible] = useState(false); // Stare pentru a controla calendarul
+  const [isCalendarVisible, setIsCalendarVisible] = useState(false);
 
-  // Funcție pentru a obține data curentă în formatul "Today, Month Day"
   const getFormattedDate = () => {
     if (!cardData.deadlineDate) {
       return (
@@ -39,7 +38,7 @@ const CardForm = ({ columnId, handleClose, onSubmit, card }) => {
       ...prevState,
       deadlineDate: date,
     }));
-    setIsCalendarVisible(false); // Închidem calendarul după selectarea unei date
+    setIsCalendarVisible(false);
   };
 
   const handleChange = (e) => {
@@ -60,14 +59,8 @@ const CardForm = ({ columnId, handleClose, onSubmit, card }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (card) {
-      console.log("Editing card:", cardData); // Log pentru editare
-    } else {
-      console.log("Adding card:", cardData); // Log pentru adăugare
-    }
-
-    onSubmit(cardData); // Trimite datele cardului către callback
-    handleClose(); // Închide modalul
+    onSubmit(cardData);
+    handleClose();
   };
   return (
     <form onSubmit={handleFormSubmit}>
@@ -131,7 +124,6 @@ const CardForm = ({ columnId, handleClose, onSubmit, card }) => {
           />
           <div style={{ position: "relative" }}>
             {" "}
-            {/* Container relativ pentru poziționare absolută */}
             <HiChevronDown
               className={styles.arrowIcon}
               onClick={() => setIsCalendarVisible(true)}
@@ -139,7 +131,6 @@ const CardForm = ({ columnId, handleClose, onSubmit, card }) => {
             {isCalendarVisible && (
               <div className="datePickerContainer">
                 {" "}
-                {/* Adăugăm clasa stilizată */}
                 <DatePicker
                   selected={
                     cardData.deadlineDate

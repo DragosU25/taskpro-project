@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--header-bg); /* Variabila pentru tema curentă */
-  color: var(--header-color); /* Variabila pentru text */
+  background-color: var(--header-bg);
+  color: var(--header-color);
   padding: 14px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

@@ -64,7 +64,7 @@ const projectSlice = createSlice({
       })
       .addCase(deleteProject.fulfilled, (state, action) => {
         state.loading = false;
-        // Elimină proiectul șters din lista proiectelor
+
         state.project = state.project.filter(
           (project) => project._id !== action.meta.arg
         );

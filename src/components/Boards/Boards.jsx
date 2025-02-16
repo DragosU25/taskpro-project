@@ -10,7 +10,11 @@ function Boards({ handleModalOpen }) {
         <h2 className={styles.title}>My Boards</h2>
         <div className={styles.addButtonContainer}>
           <p className={styles.text}>Create a new board</p>
-          <Button extraClass={styles.button} handlerFunction={handleModalOpen}>
+          <Button
+            extraClass={styles.button}
+            handlerFunction={handleModalOpen}
+            ariaLabel={"add button"}
+          >
             <Icon name={"plus"} size={20} extraClass={styles.icon} />
           </Button>
         </div>

@@ -9,12 +9,10 @@ function ProjectDetailsPage() {
   const { id } = useParams();
   const projects = useSelector((state) => selectProject(state, id));
 
-  // Assuming that projects is an array, you want to find the project with the matching id
   const project = projects?.find((p) => p._id === id);
 
-  // Construim ruta completă pentru fundal
   const backgroundUrl = project?.background
-    ? `${process.env.PUBLIC_URL}/backgroundsImg/${project.background}.jpeg` // Assuming images are stored in public/backgrounds
+    ? `${process.env.PUBLIC_URL}/backgroundsImg/${project.background}.jpeg`
     : null;
 
   return (
@@ -29,9 +27,21 @@ function ProjectDetailsPage() {
       }}
       className={styles.container}
     >
-      <h2 className={styles.title}>Project Office</h2>
+      <h2 className={styles.title}>{project?.name}</h2>
 
-      <ProjectColumns projectId={id} />
+      {project ? (
+        <ProjectColumns projectId={id} />
+      ) : (
+        <div className={styles.infoContainer}>
+          <p className={styles.errorMessage}>
+            Before starting your project, it is essential{" "}
+            <span>to create a board </span>to visualize and track all the
+            necessary tasks and milestones. This board serves as a powerful tool
+            to organize the workflow and ensure effective collaboration among
+            team members.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

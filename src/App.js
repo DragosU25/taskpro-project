@@ -20,13 +20,14 @@ const ProjectDetailsPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        {/* Rutele cu HomeSharedLayout */}
         <Route path="/" element={<HomeSharedLayout />}>
           <Route index element={<HomePage />} />
           <Route
@@ -54,7 +55,6 @@ function App() {
           />
         </Route>
 
-        {/* Rutele cu DashboardSharedLayout */}
         <Route
           path="dashboard"
           element={
