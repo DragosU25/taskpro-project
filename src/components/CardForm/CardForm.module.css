@@ -82,7 +82,7 @@
 }
 
 .selected {
-  border: 1px solid black; /* Border la bila selectată */
+  border: 1px solid black;
 }
 
 .priorityBubble:hover {

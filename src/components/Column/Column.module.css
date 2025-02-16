@@ -6,6 +6,7 @@
   justify-content: space-between;
   border-radius: 8px;
   width: 320px;
+  margin-bottom: 14px;
 }
 
 .name {
@@ -18,17 +19,6 @@
 .iconContainer {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.addContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--main-button-bg-color);
-  height: 56px;
-  width: 320px;
-  border-radius: 8px;
   gap: 8px;
 }
 
@@ -53,4 +43,10 @@
 
 .button {
   padding: 7px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
 }

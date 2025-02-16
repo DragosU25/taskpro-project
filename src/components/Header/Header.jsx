@@ -11,6 +11,7 @@ import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import Modal from "../common/Modal/Modal";
 import EditForm from "../EditForm/EditForm";
 import { getCurrentUser } from "../../redux/auth/operators";
+import { blankProfileImg } from "../../utils";
 
 function Header({ toggleSidebar }) {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Header({ toggleSidebar }) {
   const email = useSelector(selectEmail);
   const avatarPath = useSelector(selectAvatarPath);
   const [avatarUrl, setAvatarUrl] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false); // Stare pentru deschiderea modalului
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (avatarPath) {
@@ -31,28 +32,34 @@ function Header({ toggleSidebar }) {
   }, [dispatch, email, username]);
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen); // Comută starea modalului
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
     <header className={styles.header}>
-      {/* Buton pentru deschiderea sidebar-ului */}
-      <button className={styles.menuButton} onClick={toggleSidebar}>
+      <button
+        className={styles.menuButton}
+        onClick={toggleSidebar}
+        aria-label="Open Menu"
+      >
         <FiMenu size={24} />
       </button>
 
       <div className={styles.container}>
-        {/* Schimbătorul de teme */}
         <ThemeSwitcher />
 
-        {/* Utilizatorul */}
         <div className={styles.userContainer}>
-          <button type="button" className={styles.name} onClick={toggleModal}>
+          <button
+            type="button"
+            className={styles.name}
+            onClick={toggleModal}
+            aria-label="open edit form"
+          >
             {username || "Guest"}
           </button>
           <div className={styles.avatar}>
             <img
-              src={avatarUrl || "/default-avatar.png"}
+              src={avatarUrl || blankProfileImg}
               alt="User Avatar"
               className={styles.avatarImage}
             />

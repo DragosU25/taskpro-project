@@ -49,8 +49,6 @@ const Column = React.memo(({ column }) => {
           dispatch(addCard({ cardData, columnId: column._id }))
             .unwrap()
             .then((newCard) => {
-              console.log("Card added successfully:", newCard);
-              // Update the column's card list by adding the new card ID
               dispatch({
                 type: "cards/columnAddedCard",
                 payload: { columnId: column._id, cardId: newCard._id },
@@ -91,7 +89,7 @@ const Column = React.memo(({ column }) => {
         onSubmit={(cardData) => {
           dispatch(
             editCard({
-              updatedData: cardData, // Datele actualizate
+              updatedData: cardData,
               columnId: column._id,
               cardId: card._id,
             })
@@ -166,22 +164,24 @@ const Column = React.memo(({ column }) => {
           onMove={(card, toColumnId) => handleMoveCard(toColumnId, card)}
         />
 
-        <div className={styles.addContainer}>
-          <Button extraClass={styles.button} handlerFunction={handleAddCard}>
-            <div className={styles.addIconContainer}>
-              <Icon name={"plus"} size={14} extraClass={styles.icon} />
-            </div>
-          </Button>
-          <p className={styles.text}>Add another card</p>
-        </div>
+        <Button extraClass={styles.button} handlerFunction={handleAddCard}>
+          <div className={styles.addIconContainer}>
+            <Icon name={"plus"} size={14} extraClass={styles.icon} />
+          </div>
+          {cards ? (
+            <p className={styles.text}>Add a new Card</p>
+          ) : (
+            <p className={styles.text}>Add another card</p>
+          )}
+        </Button>
       </div>
+
       <Modal
         isVisible={isModalVisible}
         handleModalClose={handleModalClose}
         extraClass={styles.modal}
       >
         {modalContent}{" "}
-        {/* Make sure modalContent is always a valid component */}
       </Modal>
     </>
   );

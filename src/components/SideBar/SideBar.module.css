@@ -42,9 +42,40 @@
 
 .modalText {
   text-align: center;
+  color: var(--main-text-color);
+}
+
+.button {
+  color: var(--sidebar-text-color);
 }
 
 .modal {
   max-width: 350px;
   padding: 24px;
+}
+
+.logoutContainer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 30px;
+  gap: 14px;
+  padding: 0 24px 0 24px;
+  background-color: transparent;
+}
+
+.logoutContainer span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sidebar-text-color);
+}
+
+.logoutContainer:focus,
+.logoutContainer:hover {
+  background-color: transparent;
+}
+
+.logoutContainer span:focus,
+.logoutContainer span:hover {
+  color: var(--main-sidebar-project-active-bg-color);
 }

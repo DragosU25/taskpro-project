@@ -1,4 +1,3 @@
-/* Stiluri generale */
 .dashboardContainer {
   display: flex;
   flex-direction: column;
@@ -28,7 +27,6 @@
   color: var(--main-text-color);
 }
 
-/* Tranziții */
 .dashboardContainer,
 .header,
 .sidebar,

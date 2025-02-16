@@ -20,9 +20,9 @@
   padding: 40px 20px;
   border-radius: 8px;
   width: 100%;
-  max-width: 500px; /* Lățime maximă pentru modal */
+  max-width: 500px;
   position: relative;
-  transition: transform 0.3s ease-out; /* Animație pentru deschidere */
+  transition: transform 0.3s ease-out;
   color: var(--header-text-color);
 }
 
@@ -37,20 +37,18 @@
   cursor: pointer;
 }
 
-/* Stiluri pe mobil */
 @media (max-width: 768px) {
   .modalContent {
     padding: 20px;
-    width: 90%; /* Modalul va ocupa mai mult spațiu pe mobil */
-    max-width: 90%; /* Limitează lățimea la 90% */
+    width: 90%;
+    max-width: 90%;
   }
 
   .closeButton {
-    font-size: 24px; /* Dimensiunea mai mare pentru butonul de închidere */
+    font-size: 24px;
   }
 }
 
-/* Stiluri pentru desktop (min-width 768px) */
 @media (min-width: 768px) {
   .modalContent {
     padding: 40px;
@@ -58,6 +56,6 @@
   }
 
   .modalOverlay {
-    background: rgba(0, 0, 0, 0.5); /* Fundal semitransparent pe desktop */
+    background: rgba(0, 0, 0, 0.5);
   }
 }

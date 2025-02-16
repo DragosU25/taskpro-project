@@ -1,5 +1,7 @@
 import homePageImg from "../assets/images/homePageImg.png";
 import logo from "../assets/images/logo.png";
+import blankAvatarImg from "../assets/images/blank-profile-picture.png";
+import cactusImg from "../assets/images/cactus.png";
 import bg1 from "../assets/images/backgrounds/bg1.png";
 import bg2 from "../assets/images/backgrounds/bg2.png";
 import bg3 from "../assets/images/backgrounds/bg3.png";
@@ -18,6 +20,8 @@ import bg15 from "../assets/images/backgrounds/bg15.png";
 
 export const homeImg = homePageImg;
 export const logoImg = logo;
+export const blankProfileImg = blankAvatarImg;
+export const cactus = cactusImg;
 
 export const svgIcons = "../assets/images/sprite.svg";
 export const backgrounds = [

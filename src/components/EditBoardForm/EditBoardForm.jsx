@@ -59,12 +59,10 @@ const EditBoardForm = ({ project, onClose }) => {
     }
 
     try {
-      // Map the selected background to the desired format, e.g., bg1, bg2, ...
       const formattedBackground = `bg${
         backgrounds.indexOf(selectedBackground) + 1
       }`;
 
-      // Dispatch the form data along with selected icon and formatted background
       await dispatch(
         editProject({
           id: project._id,
@@ -77,7 +75,7 @@ const EditBoardForm = ({ project, onClose }) => {
       );
 
       alert("Project updated successfully!");
-      onClose(); // Close the modal
+      onClose();
     } catch (error) {
       console.error("Error updating project:", error);
       alert("An error occurred while updating the project. Please try again.");
@@ -88,7 +86,6 @@ const EditBoardForm = ({ project, onClose }) => {
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2 className={styles.title}>Edit Project</h2>
 
-      {/* Input for title */}
       <InputField
         type="text"
         name="name"
@@ -97,7 +94,6 @@ const EditBoardForm = ({ project, onClose }) => {
         handleChange={handleChange}
       />
 
-      {/* Select Icon */}
       <div className={styles.icons}>
         <label className={styles.label}>Icons</label>
         <div className={styles.iconGrid}>
@@ -107,7 +103,7 @@ const EditBoardForm = ({ project, onClose }) => {
               className={`${styles.icon} ${
                 selectedIcon === icon ? styles.selected : ""
               }`}
-              onClick={() => setSelectedIcon(icon)} // Set icon when clicked
+              onClick={() => setSelectedIcon(icon)}
             >
               <Icon name={icon} size={24} color="#fff" />
             </div>
@@ -115,7 +111,6 @@ const EditBoardForm = ({ project, onClose }) => {
         </div>
       </div>
 
-      {/* Select Background */}
       <div className={styles.backgrounds}>
         <label className={styles.label}>Background</label>
         <div className={styles.backgroundGrid}>
@@ -125,7 +120,7 @@ const EditBoardForm = ({ project, onClose }) => {
               className={`${styles.background} ${
                 selectedBackground === bg ? styles.selected : ""
               }`}
-              onClick={() => setSelectedBackground(bg)} // Set background when clicked
+              onClick={() => setSelectedBackground(bg)}
             >
               <img
                 src={bg}
@@ -137,7 +132,6 @@ const EditBoardForm = ({ project, onClose }) => {
         </div>
       </div>
 
-      {/* Submit Button */}
       <div className={styles.buttons}>
         <Button type="submit">Save Changes</Button>
       </div>

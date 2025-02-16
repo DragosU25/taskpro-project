@@ -41,6 +41,7 @@ code {
   --main-sidebar-project-active-bg-color: #f6f6f7;
   --main-sidebar-button-color: #bedbb0;
 
+  --help-container-bg: rgba(246, 246, 247, 1);
   --sidebar-bg: #fff;
   --sidebar-text-color: #161616;
 }
@@ -62,6 +63,7 @@ code {
   --main-icon-color-hover: #bedbb0;
   --main-sidebar-project-active-text-color: #fff;
   --main-sidebar-project-active-bg-color: rgba(255, 255, 255, 0.5);
+  --help-container-bg: rgba(31, 31, 31, 1);
   --main-sidebar-button-color: #bedbb0;
 
   --sidebar-bg: #121212;
@@ -87,6 +89,7 @@ code {
   --main-sidebar-project-active-bg-color: #1f1f1f;
   --main-sidebar-button-color: #b8bcfd;
   --main-disabled-date-color: rgba(255, 255, 255, 0.2);
+  --help-container-bg: rgba(109, 111, 233, 0.63);
 
   --sidebar-bg: #5255bc;
   --sidebar-text-color: #fff;
@@ -170,4 +173,11 @@ h2.react-datepicker__current-month {
 .react-datepicker__day--today {
   font-weight: bold;
   color: #ff4500; /* Ziua de astăzi */
+}
+
+.react-datepicker__input-time-container
+  .react-datepicker-time__input-container
+  .react-datepicker-time__input
+  input[type="time"] {
+  appearance: textfield !important;
 }

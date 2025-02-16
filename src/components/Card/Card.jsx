@@ -8,14 +8,13 @@ function Card({ card, onEdit, onDelete, onMove }) {
   const [showMoveMenu, setShowMoveMenu] = useState(false);
   const columns = useSelector(selectColumns);
 
-  // Generează clasa pentru bulina de prioritate
   const priorityClass = `${styles.priorityCircle} ${
     styles[card.cardPriority.toLowerCase()] || styles.default
   }`;
 
   const handleMove = (toColumnId) => {
     onMove(card, toColumnId);
-    setShowMoveMenu(false); // Închide meniul după mutare
+    setShowMoveMenu(false);
   };
 
   return (
@@ -69,7 +68,6 @@ function Card({ card, onEdit, onDelete, onMove }) {
                     className={styles.columnButton}
                     onClick={() => handleMove(column._id)}
                   >
-                    {/* Debugging: verifică datele coloanei */}
                     {column.name}
                     <Icon name={"move"} size={16} extraClass={styles.icon} />
                   </button>

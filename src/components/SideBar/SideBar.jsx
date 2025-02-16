@@ -9,9 +9,11 @@ import LogoContainer from "../common/LogoContainer/LogoContainer";
 import Boards from "../Boards/Boards";
 import ProjectsContainer from "../ProjectsContainer/ProjectsContainer";
 import { selectProject } from "../../redux/project/selectors";
-import { getProjects } from "../../redux/project/operators";
+import { deleteProject, getProjects } from "../../redux/project/operators";
 import AddBoardForm from "../AddBoardForm/AddBoardForm";
 import EditBoardForm from "../EditBoardForm/EditBoardForm";
+import HelpContainer from "../HelpContainer/HelpContainer";
+import DeleteModal from "../DeleteCardModal/DeleteModal";
 
 const SideBar = forwardRef(({ isSidebarOpen }, ref) => {
   const dispatch = useDispatch();
@@ -44,20 +46,40 @@ const SideBar = forwardRef(({ isSidebarOpen }, ref) => {
       <div className={styles.modalContent}>
         <h2 className={styles.modalText}>Are you sure you want to logout?</h2>
         <div className={styles.modalButtons}>
-          <Button handlerFunction={handleLogout}>Yes</Button>
-          <Button handlerFunction={handleModalClose}>No</Button>
+          <Button handlerFunction={handleLogout} extraClass={styles.button}>
+            Yes
+          </Button>
+          <Button handlerFunction={handleModalClose} extraClass={styles.button}>
+            No
+          </Button>
         </div>
       </div>
     );
   };
 
   const handleAddBoard = () => {
-    handleModalOpen(<AddBoardForm />);
+    handleModalOpen(<AddBoardForm handleModalClose={handleModalClose} />);
   };
 
   const handleEditBoard = (project) => {
     handleModalOpen(
       <EditBoardForm project={project} onClose={handleModalClose} />
+    );
+  };
+
+  const handleDeleteBoard = (id) => {
+    handleModalOpen(
+      <DeleteModal
+        title="Delete Project"
+        message="Are you sure you want to delete this project?"
+        handleModalClose={handleModalClose}
+        onConfirm={() =>
+          dispatch(deleteProject(id))
+            .unwrap()
+            .then(() => console.log("Project deleted successfully"))
+            .catch((error) => console.error("Failed to delete project:", error))
+        }
+      />
     );
   };
 
@@ -71,8 +93,20 @@ const SideBar = forwardRef(({ isSidebarOpen }, ref) => {
       >
         <LogoContainer font={16} extraClass={styles.logoContainer} />
         <Boards handleModalOpen={handleAddBoard} />
-        <ProjectsContainer projects={projects} onEdit={handleEditBoard} />
-        <Icon name={"logout"} size={24} handlerFunction={handleLogoutClick} />
+        <ProjectsContainer
+          projects={projects}
+          onEdit={handleEditBoard}
+          onDelete={handleDeleteBoard}
+        />
+
+        <HelpContainer />
+        <Button
+          extraClass={styles.logoutContainer}
+          handlerFunction={handleLogoutClick}
+        >
+          <Icon name={"logout"} size={24} extraClass={styles.icon} />
+          <span>Log out </span>
+        </Button>
       </aside>
 
       <Modal

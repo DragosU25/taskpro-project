@@ -11,6 +11,7 @@ import {
 } from "../../redux/auth/operators";
 import { useEffect, useState } from "react";
 import Notiflix from "notiflix";
+import { blankProfileImg } from "../../utils";
 
 function EditForm({ avatarPath, name, email }) {
   const dispatch = useDispatch();
@@ -45,7 +46,6 @@ function EditForm({ avatarPath, name, email }) {
       return;
     }
 
-    // Trimite doar datele modificate
     const updatedUserData = {};
 
     if (userData.name !== name) updatedUserData.name = userData.name;
@@ -55,17 +55,16 @@ function EditForm({ avatarPath, name, email }) {
     try {
       const action = await dispatch(updateUser(updatedUserData)).unwrap();
 
-      // Dacă actualizarea a fost cu succes, actualizează starea formularului cu datele noi
       if (action?.data) {
         setUserData({
           name: action.data.name,
           email: action.data.email,
-          password: "", // Resetăm parola după succes
+          password: "",
         });
       }
 
       setError(null);
-      dispatch(getCurrentUser()); // Actualizează utilizatorul curent
+      dispatch(getCurrentUser());
 
       return action;
     } catch (error) {
@@ -84,7 +83,7 @@ function EditForm({ avatarPath, name, email }) {
       <h2 className={styles.title}>Edit Profile</h2>
       <div className={styles.avatarContainer}>
         <img
-          src={avatarPath || "/default-avatar.png"} // Folosește avatarul actualizat
+          src={avatarPath || blankProfileImg}
           alt="User Avatar"
           className={styles.avatarImage}
         />

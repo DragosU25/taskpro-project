@@ -55,8 +55,8 @@
 }
 
 .selected {
-  border: 2px solid var(--main-icon-color); /* Orange border to show selection */
-  opacity: 0.8; /* Slightly dim the unselected ones */
+  border: 2px solid var(--main-icon-color);
+  opacity: 0.8;
 }
 
 .icon {
@@ -71,7 +71,7 @@
 
 .icon:hover,
 .background:hover {
-  opacity: 0.7; /* Show some feedback when hovered */
+  opacity: 0.7;
 }
 
 .title {

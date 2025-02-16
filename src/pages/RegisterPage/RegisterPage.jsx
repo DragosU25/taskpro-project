@@ -29,12 +29,11 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Corectăm tipografia aici
+    e.preventDefault();
 
     try {
       const action = await dispatch(register(userData)).unwrap();
 
-      // Resetăm câmpurile formularului
       setUserData({
         name: "",
         email: "",
@@ -42,7 +41,6 @@ const RegisterPage = () => {
       });
       setError(null);
 
-      // Afișăm notificarea de succes
       Notiflix.Notify.success(
         "Register successful! Please check your email for confirmation!"
       );
@@ -50,7 +48,6 @@ const RegisterPage = () => {
       console.log(action);
       return action;
     } catch (error) {
-      // Afișăm notificarea de eroare
       Notiflix.Notify.failure(error.msg);
       setError(error.msg);
       console.log(error);

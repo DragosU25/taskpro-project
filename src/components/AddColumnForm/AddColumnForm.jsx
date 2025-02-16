@@ -34,7 +34,6 @@ function AddColumnForm({ handleModalClose, column = null }) {
 
     try {
       if (column) {
-        // Editare coloană
         const columnId = column._id;
         const result = await dispatch(
           dispatch(
